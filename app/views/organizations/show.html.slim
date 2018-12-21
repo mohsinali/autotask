@@ -1,0 +1,36 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @organization.name
+p
+  strong Address:
+  = @organization.address
+p
+  strong Street:
+  = @organization.street
+p
+  strong Postal code:
+  = @organization.postal_code
+p
+  strong Region:
+  = @organization.region
+p
+  strong Country:
+  = @organization.country
+p
+  strong Main phone contact:
+  = @organization.main_phone_contact
+p
+  strong Fax:
+  = @organization.fax
+p
+  strong Website:
+  = @organization.website
+p
+  strong Other phone:
+  = @organization.other_phone
+
+=> link_to 'Edit', edit_organization_path(@organization)
+'|
+=< link_to 'Back', organizations_path
