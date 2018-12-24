@@ -15,6 +15,7 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require paloma
+//= require cocoon
 //= require_tree .
 
 $(document).ready(function () {
