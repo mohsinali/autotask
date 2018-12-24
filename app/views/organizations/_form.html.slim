@@ -10,6 +10,9 @@
     = f.label :name
     = f.text_field :name
   .field
+    =f.label :type
+    =f.select :type, organization_Type: Organization.types.keys.to_a
+  .field
     = f.label :address
     = f.text_area :address
   .field
@@ -36,4 +39,10 @@
   .field
     = f.label :other_phone
     = f.text_field :other_phone
+  .field
+    = f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
+  .field
+    =f.label :questmark_status, 'wants to create booking with QM'
+    =f.check_box :questmark_status
+
   .actions = f.submit

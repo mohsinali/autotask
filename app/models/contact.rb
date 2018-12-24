@@ -1,3 +1,4 @@
 class Contact < ApplicationRecord
-  belongs_to :organization
+	 has_many :organization_contacts
+  	 has_many :organizations,through: :organization_contacts
 end

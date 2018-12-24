@@ -10,6 +10,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+     @organization = Organization.find(params[:id])
+    @contact = @organization.contacts.find(params[:organization_id])
   end
 
   # GET /organizations/new
@@ -25,7 +27,9 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-
+   
+          
+         
     respond_to do |format|
       if @organization.save
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }

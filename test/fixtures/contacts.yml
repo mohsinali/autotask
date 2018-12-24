@@ -4,12 +4,10 @@ one:
   first_name: MyString
   last_name: MyString
   email: MyString
-  contact_number: MyString
-  organization: one
+  phone: MyString
 
 two:
   first_name: MyString
   last_name: MyString
   email: MyString
-  contact_number: MyString
-  organization: two
+  phone: MyString
