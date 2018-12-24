@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
      @organization = Organization.find(params[:id])
-    @contact = @organization.contacts.find(params[:organization_id])
+   
   end
 
   # GET /organizations/new
