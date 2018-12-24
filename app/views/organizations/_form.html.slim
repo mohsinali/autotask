@@ -45,16 +45,19 @@
     =f.label :questmark_status, 'wants to create booking with QM'
     =f.check_box :questmark_status
 
-  h1 Contacts
+  h5 Contacts
   br
-     
-  
-    
-  
       #contacts
          = f.fields_for :contacts do |contact|
             = render 'contact_fields', f: contact
          .links
             = link_to_add_association 'add contact', f, :contacts
+  h5 sites
+  br
+      #sites
+         = f.fields_for :sites do |site|
+            = render 'site_fields', f: site
+         .links
+            = link_to_add_association 'add site', f, :sites
 
   .actions = f.submit
