@@ -1,0 +1,51 @@
+p#notice = notice
+
+p
+  strong Contact name:
+  = @call_testing.contact_name
+p
+  strong Contact email:
+  = @call_testing.contact_email
+p
+  strong Contact phone:
+  = @call_testing.contact_phone
+p
+  strong Ip address:
+  = @call_testing.ip_address
+p
+  strong Url:
+  = @call_testing.url
+p
+  strong Isdn:
+  = @call_testing.isdn
+p
+  strong Skype detail:
+  = @call_testing.skype_detail
+p
+  strong Other:
+  = @call_testing.other
+p
+  strong Testing status:
+  = @call_testing.testing_status
+p
+  strong Testing with:
+  = @call_testing.testing_with
+p
+  strong Testing method:
+  = @call_testing.testing_method
+p
+  strong Date:
+  = @call_testing.date
+p
+  strong Comments:
+  = @call_testing.comments
+p
+  strong Room:
+  = @call_testing.room
+p
+  strong Organization:
+  = @call_testing.organization
+
+=> link_to 'Edit', edit_call_testing_path(@call_testing)
+'|
+=< link_to 'Back', call_testings_path
