@@ -1,0 +1,39 @@
+h1 Listing organizations
+
+table
+  thead
+    tr
+      th Name
+      th Address
+      th Street
+      th Postal code
+      th Region
+      th Country
+      th Main phone contact
+      th Fax
+      th Website
+      th Other phone
+      th
+      th
+      th
+
+  tbody
+    - @organizations.each do |organization|
+      tr
+        td = organization.name
+        td = organization.address
+        td = organization.street
+        td = organization.postal_code
+        td = organization.region
+        td = organization.country
+        td = organization.main_phone_contact
+        td = organization.fax
+        td = organization.website
+        td = organization.other_phone
+        td = link_to 'Show', organization
+        td = link_to 'Edit', edit_organization_path(organization)
+        td = link_to 'Destroy', organization, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Organization', new_organization_path

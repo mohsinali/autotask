@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_080709) do
+ActiveRecord::Schema.define(version: 2018_12_24_112121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "contact_phone"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_contacts_on_organization_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.string "street"
+    t.string "postal_code"
+    t.string "region"
+    t.string "country"
+    t.string "main_phone_contact"
+    t.string "fax"
+    t.string "website"
+    t.string "other_phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "type"
+    t.integer "user_type"
+    t.string "questmark_reference"
+    t.boolean "questmark_status"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -23,6 +53,14 @@ ActiveRecord::Schema.define(version: 2018_12_03_080709) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string "site_name"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_sites_on_organization_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,4 +85,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_080709) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "contacts", "organizations"
+  add_foreign_key "sites", "organizations"
 end
