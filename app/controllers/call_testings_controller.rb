@@ -1,4 +1,5 @@
 class CallTestingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_call_testing, only: [:show, :edit, :update, :destroy]
 
   # GET /call_testings
@@ -69,6 +70,6 @@ class CallTestingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def call_testing_params
-      params.require(:call_testing).permit(:contact_name, :contact_email, :contact_phone, :ip_address, :url, :isdn, :skype_detail, :other, :testing_status, :testing_with, :testing_method, :date, :comments, :room, :organization_id)
+      params.require(:call_testing).permit(:contact_name, :contact_email, :contact_phone, :ip_address, :url, :isdn, :skype_detail, :other, :testing_status, :testing_with, :testing_method, :date, :room, :organization_id)
     end
 end

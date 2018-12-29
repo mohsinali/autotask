@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_112121) do
+ActiveRecord::Schema.define(version: 2018_12_28_084219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "call_testings", force: :cascade do |t|
+    t.string "contact_name"
+    t.string "contact_email"
+    t.string "contact_phone"
+    t.string "ip_address"
+    t.string "url"
+    t.string "isdn"
+    t.string "skype_detail"
+    t.string "other"
+    t.integer "testing_status"
+    t.integer "testing_with"
+    t.boolean "testing_method"
+    t.string "date"
+    t.string "room"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "testing_with_method"
+    t.index ["organization_id"], name: "index_call_testings_on_organization_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
@@ -24,6 +55,16 @@ ActiveRecord::Schema.define(version: 2018_12_24_112121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_contacts_on_organization_id"
+  end
+
+  create_table "externals", force: :cascade do |t|
+    t.string "name"
+    t.string "questmark_reference"
+    t.string "room"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_externals_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -39,7 +80,7 @@ ActiveRecord::Schema.define(version: 2018_12_24_112121) do
     t.string "other_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "type"
+    t.integer "org_type"
     t.integer "user_type"
     t.string "questmark_reference"
     t.boolean "questmark_status"
@@ -85,6 +126,8 @@ ActiveRecord::Schema.define(version: 2018_12_24_112121) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "call_testings", "organizations"
   add_foreign_key "contacts", "organizations"
+  add_foreign_key "externals", "organizations"
   add_foreign_key "sites", "organizations"
 end

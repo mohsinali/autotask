@@ -1,0 +1,26 @@
+= form_for @external do |f|
+  - if @external.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@external.errors.count, "error")} prohibited this external from being saved:"
+      ul
+        - @external.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :questmark_reference
+    = f.text_field :questmark_reference
+  .field
+    = f.label :room
+    = f.text_field :room
+  .field
+    =f.label :organizations
+    =f.select :organization_id, Organization.external.collect { |o| [o.name , o.id] }
+  h5 Call_Testing
+  #call_testing 
+    = f.fields_for :call_testings do |call_testing|
+      = render 'call_testings/form', f: call_testing
+   
+  .actions = f.submit

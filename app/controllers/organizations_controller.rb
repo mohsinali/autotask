@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
   # GET /organizations
@@ -27,12 +28,16 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-   
-          
          
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        format.html { 
+          if organization_params['user_type']== "external"
+            redirect_to new_external_path
+          else
+            redirect_to @organization, notice: 'Organization was successfully created.'
+          end
+        }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }
@@ -73,6 +78,6 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :address, :street, :postal_code, :region, :country, :main_phone_contact, :fax, :website, :other_phone , contacts_attributes: [:first_name, :last_name, :email, :contact_phone],sites_attributes: [:site_name])
+      params.require(:organization).permit(:name, :address, :street, :postal_code, :region, :country, :main_phone_contact, :fax, :website, :other_phone ,:org_type, :user_type, contacts_attributes: [:first_name, :last_name, :email, :contact_phone],sites_attributes: [:site_name])
     end
 end

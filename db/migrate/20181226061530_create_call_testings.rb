@@ -11,9 +11,8 @@ class CreateCallTestings < ActiveRecord::Migration[5.2]
       t.string :other
       t.integer :testing_status
       t.integer :testing_with
-      t.integer :testing_method
+      t.boolean :testing_method
       t.string :date
-      t.text :comments
       t.string :room
       t.references :organization, foreign_key: true
 
