@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meetings
   get 'comments/index'
   get 'comments/new'
   resources :externals  do 
