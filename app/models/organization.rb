@@ -1,6 +1,6 @@
 class Organization < ApplicationRecord
   
-	validates :name, :address, :street, :postal_code, :region, :country, :main_phone_contact, :fax, :website, presence: true, length: { maximum: 10 }, if: :can_validate
+	validates :name, :address, :street, :postal_code, :region, :country, :main_phone_contact, :fax, :website, presence: true, if: :can_validate
     has_one :external,dependent: :destroy
     has_one :call_testing , inverse_of: :organization
     accepts_nested_attributes_for :call_testing, reject_if: :all_blank, allow_destroy: true

@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(version: 2018_12_28_084219) do
     t.text "content"
     t.string "commentable_type"
     t.bigint "commentable_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_084219) do
   end
 
   add_foreign_key "call_testings", "organizations"
+  add_foreign_key "comments", "users"
   add_foreign_key "contacts", "organizations"
   add_foreign_key "externals", "organizations"
   add_foreign_key "sites", "organizations"

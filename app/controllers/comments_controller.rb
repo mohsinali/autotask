@@ -10,12 +10,31 @@ class CommentsController < ApplicationController
   end
   def create
   @comment = @commentable.comments.new(comment_params)  
-  if @comment.save
+  @comment.user = current_user
+    if @comment.save
     redirect_to @commentable, notice: "Comment created."
-  else
+      else
     render :new
+    end
+
   end
-end
+  def destroy
+    @comment = @article.comments.find(params[:id])
+
+    if @comment.user_id == @current_user_id
+      @comment.destroy
+      render json: {}
+    else
+      render json: { errors: { comment: ['not owned by user'] } }, status: :forbidden
+    end
+  end
+   def show
+     @comment = Comments.find(params[:id])
+   
+  end
+    def comment_params
+      params.require(:comment).permit(:content)
+    end
   private
 
   def load_commentable
