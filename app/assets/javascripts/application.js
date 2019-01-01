@@ -17,6 +17,7 @@
 //= require paloma
 //= require cocoon
 //= require rails.validations
+//= require bootstrap-datepicker
 //= require_tree .
 
 $(document).ready(function () {

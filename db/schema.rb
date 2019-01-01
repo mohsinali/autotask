@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_112121) do
+ActiveRecord::Schema.define(version: 2018_12_31_081835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "call_testings", force: :cascade do |t|
+    t.string "contact_name"
+    t.string "contact_email"
+    t.string "contact_phone"
+    t.string "ip_address"
+    t.string "url"
+    t.string "isdn"
+    t.string "skype_detail"
+    t.string "other"
+    t.integer "testing_status"
+    t.integer "testing_with"
+    t.boolean "testing_method"
+    t.string "date"
+    t.string "room"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "testing_with_method"
+    t.index ["organization_id"], name: "index_call_testings_on_organization_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
@@ -24,6 +57,39 @@ ActiveRecord::Schema.define(version: 2018_12_24_112121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_contacts_on_organization_id"
+  end
+
+  create_table "externals", force: :cascade do |t|
+    t.string "name"
+    t.string "questmark_reference"
+    t.string "room"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_externals_on_organization_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string "title"
+    t.date "date"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "duration"
+    t.string "org_name"
+    t.string "booked_by"
+    t.string "operator"
+    t.text "agenda"
+    t.boolean "call_recording"
+    t.boolean "test_call"
+    t.boolean "cancel_call"
+    t.boolean "setup_call"
+    t.boolean "concierage"
+    t.bigint "organization_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_meetings_on_organization_id"
+    t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -39,10 +105,34 @@ ActiveRecord::Schema.define(version: 2018_12_24_112121) do
     t.string "other_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "type"
+    t.integer "org_type"
     t.integer "user_type"
     t.string "questmark_reference"
     t.boolean "questmark_status"
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.string "connect_type"
+    t.string "connect_address"
+    t.integer "participant_type"
+    t.integer "call_type"
+    t.string "org_site"
+    t.boolean "dial_in"
+    t.boolean "QM_dialout"
+    t.boolean "audio"
+    t.boolean "webRTC"
+    t.boolean "ISDN"
+    t.boolean "IP"
+    t.boolean "URL"
+    t.string "external_room"
+    t.bigint "organization_id"
+    t.bigint "external_id"
+    t.bigint "meeting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["external_id"], name: "index_participants_on_external_id"
+    t.index ["meeting_id"], name: "index_participants_on_meeting_id"
+    t.index ["organization_id"], name: "index_participants_on_organization_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -85,6 +175,14 @@ ActiveRecord::Schema.define(version: 2018_12_24_112121) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "call_testings", "organizations"
+  add_foreign_key "comments", "users"
   add_foreign_key "contacts", "organizations"
+  add_foreign_key "externals", "organizations"
+  add_foreign_key "meetings", "organizations"
+  add_foreign_key "meetings", "users"
+  add_foreign_key "participants", "externals"
+  add_foreign_key "participants", "meetings"
+  add_foreign_key "participants", "organizations"
   add_foreign_key "sites", "organizations"
 end

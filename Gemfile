@@ -12,6 +12,7 @@ gem 'paloma', '~> 5.1.0'
 gem "rolify"
 gem "cocoon"
 gem 'client_side_validations'
+gem 'bootstrap-datepicker-rails'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

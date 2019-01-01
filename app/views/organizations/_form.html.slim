@@ -1,4 +1,4 @@
-= form_for @organization do |f|
+= form_for @organization , validate: true do |f|
   - if @organization.errors.any?
     #error_explanation
       h2 = "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
@@ -10,8 +10,8 @@
     = f.label :name
     = f.text_field :name
   .field
-    =f.label :type
-    =f.select :type, organization_Type: Organization.types.keys.to_a
+    =f.label :org_type
+    =f.select :org_type, organization_Type: Organization.org_types.keys.to_a
   .field
     = f.label :address
     = f.text_area :address
@@ -39,19 +39,21 @@
   .field
     = f.label :other_phone
     = f.text_field :other_phone
-  .field
-    = f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
+  
   .field
     =f.label :questmark_status, 'wants to create booking with QM'
     =f.check_box :questmark_status
+  .field
+    = f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
+  
 
   h5 Contacts
   br
-      #contacts
-         = f.fields_for :contacts do |contact|
-            = render 'contact_fields', f: contact
-         .links
-            = link_to_add_association 'add contact', f, :contacts
+  #contacts
+    = f.fields_for :contacts do |contact|
+      = render 'contact_fields', f: contact
+    .links
+      = link_to_add_association 'add contact', f, :contacts
   h5 sites
   br
       #sites
@@ -59,5 +61,7 @@
             = render 'site_fields', f: site
          .links
             = link_to_add_association 'add site', f, :sites
+   
+
 
   .actions = f.submit

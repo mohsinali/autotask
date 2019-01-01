@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @external.name
+p
+  strong Questmark reference:
+  = @external.questmark_reference
+p
+  strong Room:
+  = @external.room
+p
+  strong Organization:
+  = @external.organization
+h2 Comments
+= @comments.each do |comment| 
+    strong 
+    = comment.user_id
+    br
+    = comment.content 
+    
+  
+
+= render "comments/form" 
+= link_to 'Edit', edit_external_path(@external)
+
+= link_to 'Back', externals_path
