@@ -1,0 +1,54 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @meeting.title
+p
+  strong Date:
+  = @meeting.date
+p
+  strong Start time:
+  = @meeting.start_time
+p
+  strong End time:
+  = @meeting.end_time
+p
+  strong Duration:
+  = @meeting.duration
+p
+  strong Org name:
+  = @meeting.org_name
+p
+  strong Booked by:
+  = @meeting.booked_by
+p
+  strong Operator:
+  = @meeting.operator
+p
+  strong Agenda:
+  = @meeting.agenda
+p
+  strong Call recording:
+  = @meeting.call_recording
+p
+  strong Test call:
+  = @meeting.test_call
+p
+  strong Cancel call:
+  = @meeting.cancel_call
+p
+  strong Setup call:
+  = @meeting.setup_call
+p
+  strong Concierage:
+  = @meeting.concierage
+p
+  strong Organization:
+  = @meeting.organization
+p
+  strong User:
+  = @meeting.user
+
+=> link_to 'Edit', edit_meeting_path(@meeting)
+'|
+=< link_to 'Back', meetings_path

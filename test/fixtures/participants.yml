@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  connect_type: MyString
+  connect_address: MyString
+  participant_type: 1
+  call_type: 1
+  org_site: MyString
+  dial_in: false
+  QM_dialout: false
+  audio: false
+  webRTC: false
+  ISDN: false
+  IP: false
+  URL: false
+  external_room: MyString
+  organization: one
+  external: one
+  meeting: one
+
+two:
+  connect_type: MyString
+  connect_address: MyString
+  participant_type: 1
+  call_type: 1
+  org_site: MyString
+  dial_in: false
+  QM_dialout: false
+  audio: false
+  webRTC: false
+  ISDN: false
+  IP: false
+  URL: false
+  external_room: MyString
+  organization: two
+  external: two
+  meeting: two

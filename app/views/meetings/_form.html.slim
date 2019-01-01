@@ -1,0 +1,62 @@
+= form_for @meeting do |f|
+  - if @meeting.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@meeting.errors.count, "error")} prohibited this meeting from being saved:"
+      ul
+        - @meeting.errors.full_messages.each do |message|
+          li = message
+  p booked by:  
+  = current_user.name
+  .field
+    =f.label :organizations
+    =f.select :organization_id, Organization.internal.collect { |o| [o.name , o.id] }
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :date
+    = f.date_select :date
+  .field
+    = f.label :start_time
+    = time_select :start_time, 'start_time', {ampm: true}
+  .field
+    = f.label :end_time
+    = time_select :end_time, 'end_time', {ampm: true}
+  .field
+    = f.label :duration
+    = f.text_field :duration
+  h5 Add Participants
+  br
+      #participants
+         = f.fields_for :participants do |participant|
+           h6 site
+
+            = render 'participant_fields', f: participant
+         .links
+            = link_to_add_association 'add site', f, :participants
+   
+
+  
+  .field
+    = f.label :agenda
+    = f.text_area :agenda
+
+  h6 Services
+  .field
+    = f.label :call_recording
+    = f.check_box :call_recording
+  .field
+    = f.label :test_call
+    = f.check_box :test_call
+  .field
+    = f.label :cancel_call
+    = f.check_box :cancel_call
+  .field
+    = f.label :setup_call
+    = f.check_box :setup_call
+  .field
+    = f.label :concierage
+    = f.check_box :concierage
+  
+
+  .actions = f.submit
