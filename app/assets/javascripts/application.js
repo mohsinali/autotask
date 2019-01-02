@@ -18,6 +18,7 @@
 //= require cocoon
 //= require rails.validations
 //= require bootstrap-datepicker
+//= require contacts
 //= require_tree .
 
 $(document).ready(function () {

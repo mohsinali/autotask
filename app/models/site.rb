@@ -1,3 +1,4 @@
 class Site < ApplicationRecord
-  belongs_to :organization
+	#Associations
+	belongs_to :organization
 end

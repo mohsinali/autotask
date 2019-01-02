@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :meetings
+  get 'get_contacts_by_organization/:organization_id', to: 'contacts#get_contacts_by_organization'
   get 'comments/index'
   get 'comments/new'
   resources :externals  do 
