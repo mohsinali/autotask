@@ -4,10 +4,10 @@ table.table.table-striped
   thead
     tr
       th scope="col" Name
-      th scope="col" Address
-      th scope="col" Street
-      th scope="col" Postal code
-      th scope="col" Region
+      th scope="col" Main Phone
+      th scope="col" Email
+      th scope="col" FAX
+      th scope="col" Modified_By
       th scope="col" Country
       th scope="col" contact
       th scope="col" Fax
@@ -20,12 +20,12 @@ table.table.table-striped
     - @organizations.each do |organization|
       tr
         td = organization.name
-        td = organization.address
-        td = organization.street
+        td = organization.main_phone_contact
+        td = organization.email
+        td = organization.fax
         td = organization.postal_code
         td = organization.region
         td = organization.country
-        td = organization.main_phone_contact
         td = organization.fax
         td = organization.website
         td = organization.other_phone

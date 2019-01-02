@@ -31,22 +31,20 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = current_user.organizations.new(organization_params)
-    @user = current_user 
-    respond_to do |format|
-      if @organization.save
-        format.html { 
-          if organization_params['user_type']== "external"
-            redirect_to new_external_path
-          else
-            redirect_to @organization, notice: 'Organization was successfully created.'
-          end
-        }
-        format.json { render :show, status: :created, location: @organization }
+
+    if @organization.save
+      if organization_params['user_type']== "external"
+        redirect_to new_external_path
       else
-        format.html { render :new }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
+        redirect_to @organization, notice: 'Organization was successfully created.'
       end
+    else
+      respond_to do |format|
+        format.html { render :new }
+      end            
     end
+     
+    
   end
 
   # PATCH/PUT /organizations/1
