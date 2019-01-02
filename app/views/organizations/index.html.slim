@@ -1,21 +1,20 @@
 h1 Listing organizations
 
-table
+table.table.table-striped
   thead
     tr
-      th Name
-      th Address
-      th Street
-      th Postal code
-      th Region
-      th Country
-      th Main phone contact
-      th Fax
-      th Website
-      th Other phone
-      th
-      th
-      th
+      th scope="col" Name
+      th scope="col" Address
+      th scope="col" Street
+      th scope="col" Postal code
+      th scope="col" Region
+      th scope="col" Country
+      th scope="col" contact
+      th scope="col" Fax
+      th scope="col" Website
+      th scope="col" Other phone
+      th scope="col" Action
+      
 
   tbody
     - @organizations.each do |organization|
@@ -31,8 +30,8 @@ table
         td = organization.website
         td = organization.other_phone
         td = link_to 'Show', organization
-        td = link_to 'Edit', edit_organization_path(organization)
-        td = link_to 'Destroy', organization, data: { confirm: 'Are you sure?' }, method: :delete
+        td  = link_to 'Edit', edit_organization_path(organization)
+          
 
 br
 

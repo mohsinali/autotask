@@ -6,6 +6,7 @@ class Organization < ApplicationRecord
   #Associations
   has_one :external,dependent: :destroy
   has_many :meetings
+  belongs_to :user
 
   has_one :call_testing , inverse_of: :organization
   accepts_nested_attributes_for :call_testing, reject_if: :all_blank, allow_destroy: true

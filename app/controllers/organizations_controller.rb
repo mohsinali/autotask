@@ -29,7 +29,7 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-         
+    @user = current_user 
     respond_to do |format|
       if @organization.save
         format.html { 

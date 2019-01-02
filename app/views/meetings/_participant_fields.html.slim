@@ -1,7 +1,5 @@
 .nested-fields
-  .field
-    = f.label :org_site
-    = f.select :org_site, org_site: Organization.contacts.collect { |o| [o.first_name , o.id] }
+  
 
   .field
     = f.label :call_type
