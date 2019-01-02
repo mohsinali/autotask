@@ -45,7 +45,16 @@ class ContactsController < ApplicationController
 
   end
 
-
+  def get_contacts_by_organization
+    @contacts = Contact.where("organization_id = ?", params[:organization_id])
+    respond_to do |format|
+      format.html do
+        redirect_to '/'
+      end
+      format.json { render json: @contact.to_json }
+    #https://stackoverflow.com/questions/48462992/dynamic-select-dropdown-rails-5-ajax
+  end
+  end 
 
 
   private
