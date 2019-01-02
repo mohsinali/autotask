@@ -22,7 +22,7 @@ db/*.sqlite3
 /tmp/*
 
 # add /config/database.yml if it contains passwords
-# /config/database.yml
+/config/database.yml
 
 # various artifacts
 **.war
@@ -79,6 +79,7 @@ pickle-email-*.html
 # Environment files that may contain sensitive data
 .env
 .powenv
+Docs
 
 # tilde files are usually backup files from a text editor
 *~
