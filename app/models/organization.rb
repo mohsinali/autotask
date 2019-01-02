@@ -1,4 +1,7 @@
 class Organization < ApplicationRecord
+  #Kaminari Pagination
+  paginates_per  2
+
   #enums
   enum org_type: [:customer, :lead, :prospect]
   enum user_type: [:visscon_user, :external]
