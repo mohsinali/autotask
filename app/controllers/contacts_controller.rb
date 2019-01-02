@@ -1,6 +1,9 @@
 class ContactsController < ApplicationController
+<<<<<<< Updated upstream
   before_action :authenticate_user!
 
+=======
+>>>>>>> Stashed changes
   def index
     @contacts= Contact.all
   end
