@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
+  root 'visitors#index'
+  devise_for :users
+
+
   resources :meetings
+
   get 'get_contacts_by_organization/:organization_id', to: 'contacts#get_contacts_by_organization'
   get 'comments/index'
   get 'comments/new'
-  resources :externals  do 
-  	   resources :comments
-  end 
-  resources :call_testings
 
+  resources :externals  do 
+       resources :comments
+  end
+
+
+  resources :call_testings
   resources :organizations
-  root to: 'visitors#index'
-  devise_for :users
   resources :users
 end

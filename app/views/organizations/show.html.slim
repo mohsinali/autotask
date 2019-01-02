@@ -33,7 +33,6 @@ p
 p
   strong Other phone:
   = @organization.other_phone
-
-=> link_to 'Edit', edit_organization_path(@organization)
-'|
-=< link_to 'Back', organizations_path
+= link_to 'Destroy', organization, data: { confirm: 'Are you sure?' }, method: :delete
+= link_to 'Edit', edit_organization_path(@organization)
+= link_to 'Back', organizations_path

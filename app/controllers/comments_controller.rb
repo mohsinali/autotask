@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_commentable
   def index
   	@commentable = External.find(params[:external_id])
