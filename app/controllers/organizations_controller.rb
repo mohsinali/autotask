@@ -6,6 +6,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     @organizations = Organization.all
+    @organizations = Organization.order(:name).page params[:page]
     
   end
 
@@ -18,7 +19,8 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/new
   def new
-    @organization = Organization.new
+    @organization = Organization.new(user_id: current_user)
+
   end
 
   # GET /organizations/1/edit
@@ -28,23 +30,21 @@ class OrganizationsController < ApplicationController
   # POST /organizations
   # POST /organizations.json
   def create
-    @organization = Organization.new(organization_params)
-    @user = current_user 
-    respond_to do |format|
-      if @organization.save
-        format.html { 
-          if organization_params['user_type']== "external"
-            redirect_to new_external_path
-          else
-            redirect_to @organization, notice: 'Organization was successfully created.'
-          end
-        }
-        format.json { render :show, status: :created, location: @organization }
+    @organization = current_user.organizations.new(organization_params)
+
+    if @organization.save
+      if organization_params['user_type']== "external"
+        redirect_to new_external_path
       else
-        format.html { render :new }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
+        redirect_to @organization, notice: 'Organization was successfully created.'
       end
+    else
+      respond_to do |format|
+        format.html { render :new }
+      end            
     end
+     
+    
   end
 
   # PATCH/PUT /organizations/1
@@ -70,11 +70,10 @@ class OrganizationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
-      @organization = Organization.find(params[:id])
+      @organization = current_user.organizations.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
