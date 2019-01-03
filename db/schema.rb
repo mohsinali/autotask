@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_124650) do
+ActiveRecord::Schema.define(version: 2019_01_03_082209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,10 +63,8 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.string "name"
     t.string "questmark_reference"
     t.string "room"
-    t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_externals_on_organization_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -111,6 +109,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.boolean "questmark_status"
     t.bigint "user_id"
     t.string "email"
+    t.integer "contact_method"
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
@@ -181,7 +180,6 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
   add_foreign_key "call_testings", "organizations"
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "organizations"
-  add_foreign_key "externals", "organizations"
   add_foreign_key "meetings", "organizations"
   add_foreign_key "meetings", "users"
   add_foreign_key "organizations", "users"

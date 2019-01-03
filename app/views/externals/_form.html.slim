@@ -15,9 +15,6 @@
   .field
     = f.label :room
     = f.text_field :room
-  .field
-    =f.label :organizations
-    =f.select :organization_id, Organization.external.collect { |o| [o.name , o.id] }
   h5 Call_Testing
   #call_testing 
     = f.fields_for :call_testings do |call_testing|
