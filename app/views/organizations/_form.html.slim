@@ -1,4 +1,5 @@
-= form_for @organization , validate: true do |f|
+#myForm
+= form_for @organization , :html => {"data-parsley-validate" => true} do |f|
     - if @organization.errors.any?
       #error_explanation
         h2 = "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
@@ -8,16 +9,16 @@
 
     .field
       = f.label :name
-      = f.text_field :name
+      = f.text_field :name , :required => true 
     .field
       =f.label :org_type
-      =f.select :org_type, organization_Type: Organization.org_types.keys.to_a
+      =f.select :org_type, organization_Type: Organization.org_types.keys.to_a 
     .field
       = f.label :address
-      = f.text_area :address
+      = f.text_area :address , :required => true 
     .field
       = f.label :email
-      = f.text_field :email
+      = f.text_field :email , :required => true 
     .field
       = f.label :street
       = f.text_field :street
@@ -26,31 +27,31 @@
       = f.text_field :postal_code
     .field
       = f.label :region
-      = f.text_field :region
+      = f.text_field :region , :required => true 
     .field
       = f.label :country
-      = f.text_field :country
+      = f.text_field :country , :required => true 
     .field
       = f.label :main_phone_contact
-      = f.text_field :main_phone_contact
+      = f.text_field :main_phone_contact , :required => true 
     .field
       = f.label :fax
       = f.text_field :fax
     .field
       = f.label :website
-      = f.text_field :website
+      = f.text_field :website , :required => true 
     .field
       = f.label :other_phone
       = f.text_field :other_phone
     .field
       =f.label :contact_method
-      =f.select :contact_method, Prefered_contact_method: Organization.contact_methods.keys.to_a
+      =f.select :contact_method, Prefered_contact_method: Organization.contact_methods.keys.to_a  
     .field
       =f.label :questmark_status, 'wants to create booking with QM'
       =f.check_box :questmark_status
-    .field
-      = f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
-    
+    / .field
+      =# f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
+     
 
     h5 Contacts
     br
