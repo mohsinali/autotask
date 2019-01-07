@@ -1,7 +1,7 @@
 class Organization < ApplicationRecord
   #enums
   enum org_type: [:customer, :lead, :prospect]
-  enum user_type: [:visscon_user, :external]
+  enum user_type: [:visscon_user]
   enum contact_method: [:webRTC , :audio]
 
   #Associations
@@ -21,7 +21,6 @@ class Organization < ApplicationRecord
   validates :name, :address, :street, :postal_code, :region, :country, :main_phone_contact, :fax, :website, presence: true, if: :can_validate
 
   #Scopes
-  scope :external, -> { where(user_type:[:external]) }
   scope :internal, -> { where(user_type:[:visscon_user]) }
 
   def can_validate

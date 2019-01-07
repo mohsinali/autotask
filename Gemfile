@@ -11,7 +11,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'paloma', '~> 5.1.0'
 gem "rolify"
 gem "cocoon"
-gem 'client_side_validations'
 gem 'bootstrap-datepicker-rails'
 gem 'kaminari'
 gem "parsley-rails"

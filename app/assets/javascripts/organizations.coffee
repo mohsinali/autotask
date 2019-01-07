@@ -5,4 +5,5 @@
 $.listen 'parsley:field:error', (ParsleyField) ->
   pElement = ParsleyField.$element.parent('div').prev().find('p')
   pElement.css 'color', 'red'
+  
   return

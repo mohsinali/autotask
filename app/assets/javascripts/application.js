@@ -16,7 +16,6 @@
 //= require bootstrap-sprockets
 //= require paloma
 //= require cocoon
-//= require rails.validations
 //= require bootstrap-datepicker
 //= require contacts
 //= require jquery

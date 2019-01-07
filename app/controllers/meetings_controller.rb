@@ -6,17 +6,23 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     @meetings = Meeting.all
+    @organizations = Organization.all
+    @contacts = Contact.where("Organization_id = ?", Organization.first.id)
   end
 
   # GET /meetings/1
   # GET /meetings/1.json
   def show
+    
+    
   end
 
   # GET /meetings/new
   def new
     @meeting = Meeting.new
-  end
+    @organizations = Organization.all
+    @contacts = Contact.where("Organization_id = ?", Organization.first.id)
+
 
   # GET /meetings/1/edit
   def edit
@@ -62,8 +68,15 @@ class MeetingsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def update_contacts
+    @contacts = Contact.where("organization_id = ?", params[:organization_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+ 
 
-  private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_meeting
       @meeting = Meeting.find(params[:id])
@@ -73,4 +86,5 @@ class MeetingsController < ApplicationController
     def meeting_params
       params.require(:meeting).permit(:title, :date, :start_time, :end_time, :duration, :org_name, :booked_by, :operator, :agenda, :call_recording, :test_call, :cancel_call, :setup_call, :concierage, :organization_id, :user_id, participants_attributes: [:connect_type,:connect_address,:participant_type,:call_type,:org_site,:dial_in,:QM_dialout,:audio,:webRTC,:ISDN,:IP,:URL,:external_room])
     end
+end
 end
