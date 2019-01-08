@@ -5,8 +5,8 @@
       ul
         - @meeting.errors.full_messages.each do |message|
           li = message
-  p booked by:  
-  = current_user.name
+
+  p booked by:   #{@user.name}
   .field
     =f.label :organizations
     =f.select :organization_id , options_for_select(@organizations.collect{|organization|[organization.name.titleize, organization.id] }, 1), {}, { id: 'organizations_select' } 
@@ -29,8 +29,7 @@
   h6 Site 1
   .field
       = f.label :organization_host
-      = f.select :organizer, options_for_select(@contacts.collect { |contact|[contact.first_name.titleize, contact.id] }, 0), {}, { id: 'contacts_select' } 
- 
+      = f.select :contact_id, options_for_select(@contacts.map { |contact|[contact.first_name.titleize, contact.id]}), {}, { id: 'contacts_select' } 
   br
       #participants
          = f.fields_for :participants do |participant|

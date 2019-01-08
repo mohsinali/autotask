@@ -12,4 +12,4 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("AJAX Error: #{textStatus}")
       success: (data, textStatus, jqXHR) ->
-        console.log("Dynamic organization select OK!")
+        console.log("Dynamic country select OK!")
