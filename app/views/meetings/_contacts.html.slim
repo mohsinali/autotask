@@ -1,0 +1,3 @@
+.field
+      = f.label :organization_host
+      = f.select :contact_id, options_for_select(@contacts.map { |contact|[contact.first_name.titleize, contact.id]}, 0), {}, { id: 'contacts_select' } 

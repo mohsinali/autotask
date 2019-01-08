@@ -16,12 +16,12 @@
 //= require bootstrap-sprockets
 //= require paloma
 //= require cocoon
-//= require bootstrap-datepicker
 //= require contacts
 //= require jquery
 //= require jquery_ujs
 //= require parsley
 //= require twitter/bootstrap
+//= require jquery-ui/datepicker
 //= require_tree .
 
 $(document).ready(function () {

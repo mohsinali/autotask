@@ -13,3 +13,7 @@ $ ->
         console.log("AJAX Error: #{textStatus}")
       success: (data, textStatus, jqXHR) ->
         console.log("Dynamic country select OK!")
+
+  $ ->
+   $('#datepicker').datepicker()
+   return
