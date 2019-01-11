@@ -14,16 +14,19 @@ $ ->
       success: (data, textStatus, jqXHR) ->
         console.log("Dynamic country select OK!")
 
-   $('#datepicker').datepicker()
-   return
 
-   $('#start_time_picker').datetimepicker locale: 'ru'
-   alert 'ayesha'
-   return
-   present  = moment($('#start_time_start_time').val())
+  
 
-   $(document).on 'change', '#time_select', (evt) ->
-      past = moment($('#end_time_end_time').val())
-      output = Math.floor(moment.duration(moment(present,"YYYYMMDDTHHmmss").diff(moment(past,"YYYYMMDDTHHmmss"))).asHours())+moment.utc(moment(present,"YYYYMMDDTHHmmss").diff(moment(past,"YYYYMMDDTHHmmss"))).format(":mm:ss");
-      $('#result').html(output);
-      alert output
+  $(document).on 'blur', '.meeting', (evt) ->
+    console.log('sdfsdf')
+    past  = moment($('#meeting_start_time').val())
+    present = moment($('#meeting_end_time').val())
+    console.log(past)
+    console.log(present)
+    rate = moment.duration(present.diff(past)).humanize()
+    $('#result').html(rate)
+    console.log(rate)
+
+  $('.datetimepicker1').datetimepicker()
+  return
+  

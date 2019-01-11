@@ -13,6 +13,7 @@
 //= require jquery3
 //= require popper
 //= require rails-ujs
+//= require bootstrap
 //= require bootstrap-sprockets
 //= require paloma
 //= require cocoon
@@ -20,12 +21,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require jquery.timepicker.js
 //= require parsley
 //= require twitter/bootstrap
 //= require moment
-//= require tempusdominus-bootstrap-4.js
-//= require moment/ru.js
+//= require bootstrap-datetimepicker
 //= require_tree .
 
 $(document).ready(function () {

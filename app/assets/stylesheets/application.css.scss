@@ -11,10 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require jquery-ui
- *= require jquery.timepicker.css
  *= require_tree .
  *= require_self
  */
 @import 'parsley';
-@import "tempusdominus-bootstrap-4";
-
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
