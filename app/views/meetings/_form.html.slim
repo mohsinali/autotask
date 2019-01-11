@@ -17,14 +17,16 @@
     = f.label :date
     = f.text_field :date , {id: 'datepicker'}
   .field
-    = f.label :start_time
-    = time_select :start_time, 'start_time', {ampm: true}
-  .field
-    = f.label :end_time
-    = time_select :end_time, 'end_time', {ampm: true}
+    #start_time_picker
+      = f.label :start_time
+      = text_field :start_time , 'start_time'
+  #time_select
+    .field
+      = f.label :end_time
+      = datetime_field :end_time , 'end_time'
   .field
     = f.label :duration
-    = f.text_field :duration
+    #result
   h5 Add Participants
   h6 Site 1
   .field

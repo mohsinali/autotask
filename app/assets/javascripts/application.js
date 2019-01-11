@@ -19,9 +19,13 @@
 //= require contacts
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery.timepicker.js
 //= require parsley
 //= require twitter/bootstrap
-//= require jquery-ui/datepicker
+//= require moment
+//= require tempusdominus-bootstrap-4.js
+//= require moment/ru.js
 //= require_tree .
 
 $(document).ready(function () {

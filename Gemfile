@@ -11,10 +11,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'paloma', '~> 5.1.0'
 gem "rolify"
 gem "cocoon"
-gem 'bootstrap-datepicker-rails'
 gem 'kaminari'
 gem "parsley-rails"
 gem 'jquery-ui-rails'
+gem 'momentjs-rails'
+gem 'jquery-timepicker-rails'
+gem 'bootstrap4-datetime-picker-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

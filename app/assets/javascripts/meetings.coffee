@@ -14,6 +14,16 @@ $ ->
       success: (data, textStatus, jqXHR) ->
         console.log("Dynamic country select OK!")
 
-  $ ->
    $('#datepicker').datepicker()
    return
+
+   $('#start_time_picker').datetimepicker locale: 'ru'
+   alert 'ayesha'
+   return
+   present  = moment($('#start_time_start_time').val())
+
+   $(document).on 'change', '#time_select', (evt) ->
+      past = moment($('#end_time_end_time').val())
+      output = Math.floor(moment.duration(moment(present,"YYYYMMDDTHHmmss").diff(moment(past,"YYYYMMDDTHHmmss"))).asHours())+moment.utc(moment(present,"YYYYMMDDTHHmmss").diff(moment(past,"YYYYMMDDTHHmmss"))).format(":mm:ss");
+      $('#result').html(output);
+      alert output
