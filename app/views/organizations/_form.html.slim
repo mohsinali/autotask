@@ -1,73 +1,76 @@
 #myForm
-= form_for @organization , :html => {"data-parsley-validate" => true} do |f|
+.form-group
+= bootstrap_form_for @organization , :html => {"data-parsley-validate" => true} do |f|
     - if @organization.errors.any?
       #error_explanation
         h2 = "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
         ul
           - @organization.errors.full_messages.each do |message|
             li = message
+    .row
+     .col-md-2
+     .col-md-6
+      .field
+       
+        = f.text_field :name , :required => true , placeholder: 'Name'
+      .field
+        
+        =f.select :org_type,  organization_Type: Organization.org_types.keys.to_a 
+      .field
+        
+        = f.text_area :address ,  :required => true 
+      .field
+        
+        = f.text_field :email ,  :required => true 
+      .field
+        
+        = f.text_field :street 
+      .field
+        = f.text_field :postal_code 
+      .field
+        
+        = f.text_field :region , :required => true 
+      .field
+        
+        = f.text_field :country , :required => true 
+      .field
+       
+        = f.text_field :main_phone_contact , :required => true  
+      .field
+        
+        = f.text_field :fax 
+      .field
+        
+        = f.text_field :website , :required => true 
+      .field
+        
+        = f.text_field :other_phone 
+      .field
+        
+        =f.select :contact_method,  Prefered_contact_method: Organization.contact_methods.keys.to_a  
+      .field
+        
+        =f.check_box :questmark_status
+      / .field
+        =# f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
+       
 
-    .field
-      = f.label :name
-      = f.text_field :name , :required => true 
-    .field
-      =f.label :org_type
-      =f.select :org_type, organization_Type: Organization.org_types.keys.to_a 
-    .field
-      = f.label :address
-      = f.text_area :address , :required => true 
-    .field
-      = f.label :email
-      = f.text_field :email , :required => true 
-    .field
-      = f.label :street
-      = f.text_field :street
-    .field
-      = f.label :postal_code
-      = f.text_field :postal_code
-    .field
-      = f.label :region
-      = f.text_field :region , :required => true 
-    .field
-      = f.label :country
-      = f.text_field :country , :required => true 
-    .field
-      = f.label :main_phone_contact
-      = f.text_field :main_phone_contact , :required => true 
-    .field
-      = f.label :fax
-      = f.text_field :fax
-    .field
-      = f.label :website
-      = f.text_field :website , :required => true 
-    .field
-      = f.label :other_phone
-      = f.text_field :other_phone
-    .field
-      =f.label :contact_method
-      =f.select :contact_method, Prefered_contact_method: Organization.contact_methods.keys.to_a  
-    .field
-      =f.label :questmark_status, 'wants to create booking with QM'
-      =f.check_box :questmark_status
-    / .field
-      =# f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
-     
-
-    h5 Contacts
-    br
-    #contacts
-      = f.fields_for :contacts do |contact|
-        = render 'contact_fields', f: contact
-      .links
-        = link_to_add_association 'add contact', f, :contacts
-    h5 sites
-    br
-        #sites
-           = f.fields_for :sites do |site|
-              = render 'site_fields', f: site
-           .links
-              = link_to_add_association 'add site', f, :sites
-     
+      h2 Contacts
+      br
+      #contacts
+        = f.fields_for :contacts do |contact|
+          = render 'contact_fields', f: contact
+        .links
+          = link_to_add_association 'add contact', f, :contacts
+      h2 sites
+      br
+          #sites
+             = f.fields_for :sites do |site|
+                = render 'site_fields', f: site
+             .links
+                = link_to_add_association 'add site', f, :sites
+       
 
 
-    .actions = f.submit
+      .btn = f.submit 
+    .col-md-2

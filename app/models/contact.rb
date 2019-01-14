@@ -1,6 +1,5 @@
 class Contact < ApplicationRecord
   #Associations
-  belongs_to :organization
-  
+  belongs_to :organization 
 
 end

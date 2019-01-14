@@ -1,23 +1,26 @@
-= form_for @external , :html => {"data-parsley-validate" => true} do |f|
+= bootstrap_form_for @external , :html => {"data-parsley-validate" => true} do |f|
   - if @external.errors.any?
     #error_explanation
       h2 = "#{pluralize(@external.errors.count, "error")} prohibited this external from being saved:"
       ul
         - @external.errors.full_messages.each do |message|
           li = message
+  .row
+    .col-md-2
+    .col-md-6
+        .field
+          
+          = f.text_field :name , :required => true
+        .field
+          
+          = f.text_field :questmark_reference, :required => true
+        .field
+          
+          = f.text_field :room , :required => true
+        h5 Call_Testing
+        #call_testing 
+          = f.fields_for :call_testings do |call_testing|
+            = render 'call_testings/form', f: call_testing
+         
+        .actions = f.submit
 
-  .field
-    = f.label :name
-    = f.text_field :name , :required => true
-  .field
-    = f.label :questmark_reference
-    = f.text_field :questmark_reference, :required => true
-  .field
-    = f.label :room
-    = f.text_field :room , :required => true
-  h5 Call_Testing
-  #call_testing 
-    = f.fields_for :call_testings do |call_testing|
-      = render 'call_testings/form', f: call_testing
-   
-  .actions = f.submit

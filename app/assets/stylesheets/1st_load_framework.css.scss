@@ -53,7 +53,7 @@ section {
   margin: 0 auto;
 }
 .authform form {
-  @extend .card !optional;
+  @extend .card;
   @extend .col-md-9;
   padding-bottom: 40px;
   @extend .bg-light !optional;
@@ -67,7 +67,7 @@ section {
   @extend .btn-primary;
 }
 .authform fieldset {
-  @extend .card !optional;
+  @extend .card ;
 }
 #error_explanation:not(:empty) {
   @extend .alert;
