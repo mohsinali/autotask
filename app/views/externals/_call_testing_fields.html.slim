@@ -28,23 +28,24 @@
     = f.select :testing_status, testing_status: CallTesting.testing_statuses.keys.to_a
   .field
     
-    = f.radio_button "successful dialing in", :testing_method, true 
+    = f.radio_button :testing_method, true , {label:'Successful dialing in'}
 
   .field 
   
-    = f.radio_button"unsuccessful dialing in", :testing_method, false 
+    = f.radio_button :testing_method, false , {label:'Unsuccessful dialing in'}
   .field
     
     = f.select :testing_with, testing_with: CallTesting.testing_withs.keys.to_a
   
   .field
    
-    = f.radio_button "successful dialing in",:testing_with_method, true 
+    = f.radio_button :testing_with_method, true , {label:'Successful dialing in'}
 
   .field 
     
-    = f.radio_button "unsuccessful dialing in", :testing_with_method, false 
+    = f.radio_button :testing_with_method, false , {label:'Unsuccessful dialing in'}
   .field
    
     = datepicker_input f, :date 
+    
   

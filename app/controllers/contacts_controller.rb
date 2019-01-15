@@ -6,6 +6,7 @@ class ContactsController < ApplicationController
 >>>>>>> Stashed changes
   def index
     @contacts= Contact.all
+    
   end
 
   def show

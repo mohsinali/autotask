@@ -15,26 +15,17 @@
           =f.select :organization_id , options_for_select(@organizations.collect{|organization|[organization.name.titleize, organization.id] }, 1), {}, { id: 'organizations_select' } 
         .field
          
-          = f.text_field :title  ,  class: 'form-control'
+          = f.text_field :title 
         .meeting
-         .row
-          .col-sm-3
-            .form-group
-              .datetimepicker1.input-group.date
-                 .field
-                    
+              .datetimepicker1.input-group
+                 .field    
                     = f.text_field :start_time , {class: 'meeting_start_time'}
-                 span.input-group-addon
-                        span.glyphicon.glyphicon-calendar
-
-          .row
-            .col-sm-3
-              .form-group
-                .datetimepicker1.input-group.date
-                 .field
-                    
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-calendar
+              .datetimepicker1.input-group
+                 .field                    
                     = f.text_field :end_time  , {class: 'meeting_end_time'}
-                 span.input-group-addon
+                    span.input-group-addon
                       span.glyphicon.glyphicon-calendar
 
             
@@ -60,12 +51,12 @@
         
         .field
           
-          = f.text_area :agenda , class: 'form-control'
+          = f.text_area :agenda 
 
         h3 Services
         .field
          
-          = f.check_box :call_recording , class: 'checbox-inline'
+          = f.check_box :call_recording 
         .field
           
           = f.check_box :test_call

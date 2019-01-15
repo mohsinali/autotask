@@ -6,6 +6,7 @@ class ExternalsController < ApplicationController
   # GET /externals.json
   def index
     @externals = External.all
+    @externals = External.order(:name).page params[:page]
   end
 
   # GET /externals/1
@@ -19,7 +20,8 @@ class ExternalsController < ApplicationController
 
   # GET /externals/new
   def new
-    @external = External.new
+    @external = External.new(user_id: current_user)
+  
   end
 
   # GET /externals/1/edit
@@ -29,7 +31,7 @@ class ExternalsController < ApplicationController
   # POST /externals
   # POST /externals.json
   def create
-    @external = External.new(external_params)
+    @external = current_user.externals.new(external_params)
 
     respond_to do |format|
       if @external.save
@@ -74,6 +76,6 @@ class ExternalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def external_params
-      params.require(:external).permit(:name, :questmark_reference, :room, call_testing_attributes:[:contact_name, :contact_email , :contact_phone, :ip_address, :url , :isdn , :skype_detail, :other, :testing_status, :testing_with, :testing_method, :date])
+      params.require(:external).permit(:name, :questmark_reference, :room, call_testing_attributes:[:id,:contact_name, :contact_email , :contact_phone, :ip_address, :url , :isdn , :skype_detail, :other, :testing_status, :testing_with, :testing_method, :date])
     end
 end

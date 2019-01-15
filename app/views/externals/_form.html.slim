@@ -19,8 +19,10 @@
           = f.text_field :room , :required => true
         h5 Call_Testing
         #call_testing 
-          = f.fields_for :call_testings do |call_testing|
-            = render 'call_testings/form', f: call_testing
+          = f.fields_for :call_testing, @external.call_testing do |call_testing|
+            = render 'call_testing_fields', f: call_testing
+          = link_to_add_association 'Add Call Testing', f, :call_testing,:force_non_association_create => true , :id=> 'stop'
+ 
          
         .actions = f.submit
 

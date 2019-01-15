@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_073158) do
+ActiveRecord::Schema.define(version: 2019_01_15_130126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(version: 2019_01_14_073158) do
     t.integer "testing_with"
     t.boolean "testing_method"
     t.string "date"
-    t.string "room"
-    t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "testing_with_method"
-    t.index ["organization_id"], name: "index_call_testings_on_organization_id"
+    t.bigint "external_id"
+    t.index ["external_id"], name: "index_call_testings_on_external_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -65,6 +64,8 @@ ActiveRecord::Schema.define(version: 2019_01_14_073158) do
     t.string "room"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_externals_on_user_id"
   end
 
   create_table "meeting_organizations", force: :cascade do |t|
@@ -187,9 +188,10 @@ ActiveRecord::Schema.define(version: 2019_01_14_073158) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "call_testings", "organizations"
+  add_foreign_key "call_testings", "externals"
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "organizations"
+  add_foreign_key "externals", "users"
   add_foreign_key "meetings", "contacts"
   add_foreign_key "meetings", "organizations"
   add_foreign_key "meetings", "users"
