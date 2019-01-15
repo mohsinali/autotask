@@ -6,7 +6,6 @@ table
       th Name
       th Questmark reference
       th Room
-      th Organization
       th
       th
       th
@@ -17,7 +16,6 @@ table
         td = external.name
         td = external.questmark_reference
         td = external.room
-        td = external.organization
         td = link_to 'Show', external
         td = link_to 'Edit', edit_external_path(external)
         td = link_to 'Destroy', external, data: { confirm: 'Are you sure?' }, method: :delete

@@ -15,7 +15,7 @@ gem 'kaminari'
 gem "parsley-rails"
 gem 'jquery-ui-rails'
 gem 'momentjs-rails'  
-
+gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'

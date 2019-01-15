@@ -24,8 +24,9 @@
 //= require parsley
 //= require twitter/bootstrap
 //= require moment
-//= require_tree .
 //= require bootstrap-datetimepicker
+//= require_tree .
+
 $(document).ready(function () {
   Paloma.start();
 });

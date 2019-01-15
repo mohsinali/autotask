@@ -21,11 +21,8 @@ $ ->
     console.log('sdfsdf')
     past  = moment($('#meeting_start_time').val())
     present = moment($('#meeting_end_time').val())
-    console.log(past)
-    console.log(present)
     rate = moment.duration(present.diff(past)).humanize()
     $('#result').html(rate)
-    console.log(rate)
 
   $('.datetimepicker1').datetimepicker()
   return
