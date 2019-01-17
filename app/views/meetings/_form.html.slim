@@ -33,7 +33,13 @@
           = f.label :duration
           #result
         
-       
+          .input-append.date.form_datetime
+              input readonly="" size="16" type="text" value="" /
+              span.add-on
+                i.icon-th
+
+ 
+
         .field
             = f.label :organization_host
             = f.select :contact_id, options_for_select(@contacts.map { |contact|[contact.first_name.titleize, contact.id]}), {}, { id: 'contacts_select' } 

@@ -24,6 +24,6 @@ $ ->
     rate = moment.duration(present.diff(past)).humanize()
     $('#result').html(rate)
 
-  $('.datetimepicker1').datetimepicker()
+  $('.datetimepicker1').datetimepicker
   return
   

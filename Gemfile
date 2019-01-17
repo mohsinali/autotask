@@ -14,10 +14,10 @@ gem "cocoon"
 gem 'kaminari'
 gem "parsley-rails"
 gem 'jquery-ui-rails'
-gem 'momentjs-rails'  
-gem 'bootstrap-sass'
+gem 'momentjs-rails' 
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'bootstrap_form'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
