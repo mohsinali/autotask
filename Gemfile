@@ -15,8 +15,6 @@ gem 'kaminari'
 gem "parsley-rails"
 gem 'jquery-ui-rails'
 gem 'momentjs-rails' 
-gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
-                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 group :development, :test do
