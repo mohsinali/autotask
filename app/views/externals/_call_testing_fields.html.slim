@@ -46,6 +46,11 @@
     = f.radio_button :testing_with_method, false , {label:'Unsuccessful dialing in'}
   .field
    
-    = datepicker_input f, :date 
+    = f.text_field :date  , {:id => 'datetime'}
     
   
+
+javascript:
+   $('#datetime').datetimepicker({
+       uiLibrary: 'bootstrap4'
+   });

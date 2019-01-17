@@ -7,3 +7,4 @@ $ ->
   $('#stop').click ->
   	$('#stop').hide()
   
+ 
