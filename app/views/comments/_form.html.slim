@@ -1,4 +1,4 @@
-= form_for [@commentable, @comment] do |f| 
+= bootstrap_form_for [@commentable, @comment] do |f| 
    - if @comment.errors.any? 
     .error_messages
       h2  Please correct the following errors.
@@ -8,7 +8,7 @@
      
 
    .field
-   = f.text_area :content, rows: 8 
+   = f.text_area :content, rows: 3 , col:2 , label: "Write your comment"
  
    .actions
    = f.submit 
