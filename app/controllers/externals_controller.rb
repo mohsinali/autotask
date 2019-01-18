@@ -76,6 +76,6 @@ class ExternalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def external_params
-      params.require(:external).permit(:name, :questmark_reference, :room, call_testing_attributes:[:id,:contact_name, :contact_email , :contact_phone, :ip_address, :url , :isdn , :skype_detail, :other, :testing_status, :testing_with, :testing_method, :date])
+      params.require(:external).permit(:name, :questmark_reference, :room, call_testing_attributes:[:id,:contact_name, :contact_email , :contact_phone, :ip_address, :url , :isdn , :skype_detail, :other, :testing_status, :testing_with, :testing_method, :testing_with_method, :date])
     end
 end

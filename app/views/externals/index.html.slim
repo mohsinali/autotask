@@ -15,7 +15,7 @@ table.table.table-striped
 
   tbody
     - @externals.each do |external|
-      tr
+      tr data-href= "/externals/#{external.id}"
         td = external.name
         td = external.call_testing.contact_name
         td = external.call_testing.contact_email
@@ -29,4 +29,4 @@ table.table.table-striped
 br
 = paginate @externals 
 
-= link_to 'New external', new_external_path
+= link_to 'New external', new_external_path , class:'btn btn-success'

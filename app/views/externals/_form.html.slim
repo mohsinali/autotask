@@ -17,7 +17,7 @@
         .field
           
           = f.text_field :room , :required => true
-        h5 Call_Testing
+        h5 Call Testing Details
         #call_testing 
           = f.fields_for :call_testing, @external.call_testing do |call_testing|
             = render 'call_testing_fields', f: call_testing

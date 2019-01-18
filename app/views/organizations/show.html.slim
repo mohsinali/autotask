@@ -1,41 +1,103 @@
 p#notice = notice
+.row
+  .col-md-6
+    h5 Organization Details
+    table.table
 
-p
-  strong Name:
-  = @organization.name
-p
-  strong Organization Type:
-  = @organization.org_type
-p
-  strong Address:
-  = @organization.address
-p
-  strong Email:
-  = @organization.email
-p
-  strong Street:
-  = @organization.street
-p
-  strong Postal code:
-  = @organization.postal_code
-p
-  strong Region:
-  = @organization.region
-p
-  strong Country:
-  = @organization.country
-p
-  strong Main phone contact:
-  = @organization.main_phone_contact
-p
-  strong Fax:
-  = @organization.fax
-p
-  strong Website:
-  = @organization.website
-p
-  strong Other phone:
-  = @organization.other_phone
-= link_to 'Destroy', @organization, data: { confirm: 'Are you sure?' }, method: :delete
-= link_to 'Edit', edit_organization_path(@organization)
-= link_to 'Back', organizations_path
+      tr
+        td 
+          strong Name:
+        td = @organization.name
+      tr
+        td 
+          strong Organization Type:
+        td = @organization.org_type
+      tr
+        td 
+          strong Address:
+        td = @organization.address
+      tr
+        td 
+          strong Email:
+        td = @organization.email
+      tr
+        td 
+          strong Main phone contact:
+        td = @organization.main_phone_contact
+      tr
+        td 
+          strong Other phone:
+        td = @organization.other_phone
+      tr
+        td 
+          strong Website:
+        td = @organization.website
+      tr
+        td 
+          strong Country:
+        td = @organization.country
+      tr
+        td 
+          strong Street:
+        td = @organization.street
+      tr
+        td 
+          strong Postal code:
+        td = @organization.postal_code
+      tr
+        td 
+          strong Region:
+        td = @organization.region
+      tr
+        td 
+          strong Fax:
+        td = @organization.fax
+  .col-md-6
+    h4 Contacts
+    table.table
+      -@organization.contacts.each do |contact|
+            tr
+              td 
+                strong First Name:
+              td = contact.first_name
+            tr
+              td 
+                strong Last Name:
+              td = contact.last_name
+            tr
+              td 
+                strong Email:
+              td = contact.email
+            tr
+              td 
+                strong Phone:
+              td = contact.contact_phone
+            tr
+              td 
+                strong Job Role:
+              td = contact.contact_type
+    h4 Sites
+    table.table
+      -@organization.sites.each do |site|
+            tr
+              td 
+                strong Site Name:
+              td = site.site_name
+            tr
+              td 
+                strong Site Contact:
+              td = site.contact
+            tr
+              td 
+                strong Address:
+              td = site.address
+
+  
+  
+  
+  
+  
+= link_to 'Destroy', @organization, data: { confirm: 'Are you sure?' }, method: :delete , class: 'btn btn-danger'
+= link_to 'Edit', edit_organization_path(@organization) , class: 'btn btn-success'
+
+br

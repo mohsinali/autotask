@@ -11,7 +11,7 @@
      .col-md-5
       .field
        
-        = f.text_field :name , :required => true , placeholder: 'Name'
+        = f.text_field :name , :required => true 
       .field
         
         =f.select :org_type,  organization_Type: Organization.org_types.keys.to_a 
@@ -24,7 +24,7 @@
         = f.text_field :main_phone_contact , :required => true  
       .field
         =f.label 'how do u want to connect the meeeting'
-        =f.select :contact_method, Prefered_contact_method: Organization.contact_methods.keys.to_a 
+        =f.select :contact_method,Organization.contact_methods.keys.to_a 
       .field
         
         = f.text_area :address ,  :required => true  

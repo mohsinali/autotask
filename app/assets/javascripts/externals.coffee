@@ -6,5 +6,7 @@ $ ->
   # limits the number of call_testing
   $('#stop').click ->
   	$('#stop').hide()
-  
+  $('tr[data-href]').click ->
+	  window.location = $(this).data('href')
+	 
  
