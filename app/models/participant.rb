@@ -1,7 +1,8 @@
 class Participant < ApplicationRecord
+	#enums
+	enum participant_type: [:internal, :external]
 	#Associations
-	belongs_to :organization
-	belongs_to :external
+	
 	belongs_to :meeting
 
 	#Validations

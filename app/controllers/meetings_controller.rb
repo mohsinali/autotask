@@ -23,10 +23,11 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = Meeting.new
-     @user = current_user
-      @organizations = Organization.all
-      @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
- end
+    @user = current_user
+    @organizations = Organization.all
+    @externals = External.all
+    @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
+  end
 
   # GET /meetings/1/edit
   def edit
@@ -93,7 +94,7 @@ class MeetingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_params
-      params.require(:meeting).permit(:title, :date, :start_time, :end_time, :duration, :booked_by,:agenda, :call_recording, :test_call, :cancel_call, :setup_call, :concierage,:user_id,:organization_id ,:contact_id, participants_attributes: [:connect_type,:connect_address,:participant_type,:call_type,:org_site,:dial_in,:QM_dialout,:audio,:webRTC,:ISDN,:IP,:URL,:external_room])
+      params.require(:meeting).permit(:title, :date, :start_time, :end_time, :duration, :booked_by,:agenda, :call_recording, :test_call, :cancel_call, :setup_call, :concierage,:user_id,:organization_id ,:contact_id,:call_type, :room,  participants_attributes: [:connect_type,:connect_address,:participant_type,:call_type,:org_site,:dial_in,:QM_dialout,:audio,:webRTC,:ISDN,:IP,:URL,:external_room])
     end
 end
 

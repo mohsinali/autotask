@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_124727) do
+ActiveRecord::Schema.define(version: 2019_01_21_091056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 2019_01_17_124727) do
     t.index ["user_id"], name: "index_externals_on_user_id"
   end
 
+  create_table "meeting_externals", force: :cascade do |t|
+    t.bigint "meeting_id"
+    t.bigint "external_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["external_id"], name: "index_meeting_externals_on_external_id"
+    t.index ["meeting_id"], name: "index_meeting_externals_on_meeting_id"
+  end
+
   create_table "meeting_organizations", force: :cascade do |t|
     t.integer "meeting_id"
     t.integer "organization_id"
@@ -93,6 +102,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_124727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "contact_id"
+    t.integer "call_type"
+    t.string "room"
     t.index ["contact_id"], name: "index_meetings_on_contact_id"
     t.index ["organization_id"], name: "index_meetings_on_organization_id"
     t.index ["user_id"], name: "index_meetings_on_user_id"
@@ -195,6 +206,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_124727) do
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "organizations"
   add_foreign_key "externals", "users"
+  add_foreign_key "meeting_externals", "externals"
+  add_foreign_key "meeting_externals", "meetings"
   add_foreign_key "meetings", "contacts"
   add_foreign_key "meetings", "organizations"
   add_foreign_key "meetings", "users"

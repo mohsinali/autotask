@@ -1,6 +1,11 @@
 .nested-fields
-  
-
-  .field
-    = f.label :call_type
-    = f.select :call_type, call_type: Meeting.call_types.keys.to_a
+	.row
+		.col-md-4
+		  .field
+		    = f.select :participant_type, Participant.participant_types.keys.to_a
+		.col-md-4
+		  .field
+		    =f.select :external_id , options_for_select(@externals.collect{|external|[external.name.titleize, external.id] }, 1), {}, { id: 'externals_select' } 
+		.col-md-4
+		  .field
+		  	=f.text_field :external_room

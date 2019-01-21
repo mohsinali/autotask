@@ -6,6 +6,8 @@ class Meeting < ApplicationRecord
   has_many :meeting_organizations
   has_many :organizations, through: :meeting_organizations
   
+  has_many :meeting_externals
+  has_many :externals, through: :meeting_externals
 
  
   belongs_to :user , optional: true

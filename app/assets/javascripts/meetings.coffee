@@ -18,7 +18,6 @@ $ ->
   
 
   $(document).on 'blur', '.meeting', (evt) ->
-    console.log('sdfsdf')
     past  = moment($('#meeting_start_time').val())
     present = moment($('#meeting_end_time').val())
     rate = moment.duration(present.diff(past)).humanize()

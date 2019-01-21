@@ -7,64 +7,71 @@
         - @meeting.errors.full_messages.each do |message|
           li = message
   .row
-    .col-md-2
-    .col-md-6
+    .col-md-5
         p booked by:   #{@user.name}
         .field
          
           =f.select :organization_id , options_for_select(@organizations.collect{|organization|[organization.name.titleize, organization.id] }, 1), {}, { id: 'organizations_select' } 
         .field
          
-          = f.text_field :title 
+          = f.text_field :title
+    .col-md-5 
+        br
+        br
         .meeting
             
                  .field    
                     = f.text_field :start_time , {class: 'meeting_start_time' }
-                   
-              
+                            
                  .field                    
                     = f.text_field :end_time  , {class: 'meeting_end_time'}
-                   
-            
+                         
         .field
-          = f.label :duration
+          = f.label :duration 
           #result
-
+  .row
+    .col-md-4
         .field
-            = f.label :organization_host
-            = f.select :contact_id, options_for_select(@contacts.map { |contact|[contact.first_name.titleize, contact.id]}), {}, { id: 'contacts_select' } 
-        / br
-        /     h5 Add Participants
-        /     #participants
-        /        =# f.fields_for :participants do |participant|
-        /          h6 site
+           
+            = f.select :contact_id, options_for_select(@contacts.map { |contact|[contact.first_name.titleize, contact.id]}), {}, { id: 'contacts_select' }
+      
+    .col-md-4    
+      .field
+           =f.select :call_type,Meeting.call_types.keys.to_a , label: 'Call Type'
+    .col-md-4 
+      .field
+          =f.text_field :room 
+  br
+            h5 Add Participants
+            #participants
+               = f.fields_for :participants do |participant|
+                 h6 site
 
-        /           =# render 'participant_fields', f: participant
-        /        .links
-        /           =# link_to_add_association 'add site', f, :participants
+                  = render 'participant_field', f: participant
+               .links
+                  = link_to_add_association 'add site', f, :participants
          
 
-        
-        .field
-          
-          = f.text_area :agenda 
+  .field
+    
+    = f.text_area :agenda 
 
-        h3 Services
-        .field
-         
-          = f.check_box :call_recording 
-        .field
-          
-          = f.check_box :test_call
-        .field
-          
-          = f.check_box :cancel_call
-        .field
-          
-          = f.check_box :setup_call
-        .field
-          
-          = f.check_box :concierage
+  h3 Services
+  .field
+   
+    = f.check_box :call_recording 
+  .field
+    
+    = f.check_box :test_call
+  .field
+    
+    = f.check_box :cancel_call
+  .field
+    
+    = f.check_box :setup_call
+  .field
+    
+    = f.check_box :concierage
         
 
         .actions = f.submit

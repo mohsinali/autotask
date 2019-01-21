@@ -6,7 +6,7 @@ class Organization < ApplicationRecord
 
   #Associations
   belongs_to :user
-
+  
   has_many :sites ,dependent: :destroy, inverse_of: :organization
   accepts_nested_attributes_for :sites, reject_if: :all_blank, allow_destroy: true
  
