@@ -94,7 +94,7 @@ class MeetingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_params
-      params.require(:meeting).permit(:title, :date, :start_time, :end_time, :duration, :booked_by,:agenda, :call_recording, :test_call, :cancel_call, :setup_call, :concierage,:user_id,:organization_id ,:contact_id,:call_type, :room,  participants_attributes: [:connect_type,:connect_address,:participant_type,:call_type,:org_site,:dial_in,:QM_dialout,:audio,:webRTC,:ISDN,:IP,:URL,:external_room])
+      params.require(:meeting).permit(:title, :date, :start_time, :end_time, :duration, :booked_by,:agenda, :call_recording, :test_call, :cancel_call, :setup_call, :concierage,:user_id,:organization_id ,:contact_id,:call_type, :room,  meeting_organizations_attributes: [:meeting_id , :organization_id,:connect_type,:connect_address,:room,:dial_in,:QM_dial_out,:audio, :webRTC,:ISDN, :IP,:URL],meeting_externals_attributes: [:meeting_id , :external_id,:connect_type,:connect_address,:room,:dial_in,:QM_dial_out,:audio, :webRTC,:ISDN, :IP,:URL])
     end
 end
 

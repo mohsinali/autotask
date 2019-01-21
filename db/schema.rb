@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_21_091056) do
+ActiveRecord::Schema.define(version: 2019_01_21_122317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 2019_01_21_091056) do
     t.bigint "external_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "connect_type"
+    t.string "connect_address"
+    t.string "room"
+    t.boolean "dial_in"
+    t.boolean "QM_dial_out"
+    t.boolean "audio"
+    t.boolean "webRTC"
+    t.boolean "ISDN"
+    t.boolean "IP"
+    t.boolean "URL"
     t.index ["external_id"], name: "index_meeting_externals_on_external_id"
     t.index ["meeting_id"], name: "index_meeting_externals_on_meeting_id"
   end
@@ -83,6 +93,16 @@ ActiveRecord::Schema.define(version: 2019_01_21_091056) do
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "connect_type"
+    t.string "connect_address"
+    t.string "room"
+    t.boolean "dial_in"
+    t.boolean "QM_dial_out"
+    t.boolean "audio"
+    t.boolean "webRTC"
+    t.boolean "ISDN"
+    t.boolean "IP"
+    t.boolean "URL"
     t.index ["meeting_id", "organization_id"], name: "index_meeting_organizations_on_meeting_id_and_organization_id"
   end
 

@@ -1,0 +1,6 @@
+.nested-fields
+	.row
+		.col-md-4
+		  .field
+		   =f.select :external_id , options_for_select(@externals.collect{|external|[external.name.titleize, external.id] }, 1)
+	

@@ -43,14 +43,18 @@
           =f.text_field :room 
   br
             h5 Add Participants
-            #participants
-               = f.fields_for :participants do |participant|
-                 h6 site
-
-                  = render 'participant_field', f: participant
+            #meeting_organizations
+               = f.fields_for :meeting_organizations do |participant|
+                  = render 'meeting_organization_field', f: participant
                .links
-                  = link_to_add_association 'add site', f, :participants
-         
+                  = link_to_add_association 'Add Internal Organizations', f, :meeting_organizations , class:'btn btn-danger'
+  br
+           
+            #meeting_organizations
+               = f.fields_for :meeting_externals do |participant|
+                  = render 'meeting_external_field', f: participant
+               .links
+                  = link_to_add_association 'Add External Organizations', f, :meeting_externals  , class:'btn btn-success'       
 
   .field
     
@@ -74,7 +78,7 @@
     = f.check_box :concierage
         
 
-        .actions = f.submit
-    .col-md-2
+  .actions = f.submit
+
 
    
