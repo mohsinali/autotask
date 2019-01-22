@@ -1,0 +1,7 @@
+.row
+		.col-md-4
+			.field
+           		=f.select :connect_type,MeetingOrganization.connect_types.keys.to_a , label: 'Connection Type'
+        .col-md-4
+        	.field
+        		=f.text_field :connect_address

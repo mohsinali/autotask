@@ -6,19 +6,46 @@
 		.col-md-4
 		   =f.text_field :room
 	.row
-		.col-md-4	  
-			.field
+		.col-md-6	  
+			.field.dial_in
 			    
-			    = f.check_box :dial_in
-	    .col-md-4	  
-			.field
-			    
+			    = f.check_box :dial_in	    
+			.row style="display:none;"
+				.col-md-6
+					.field
+			       		=f.select :connect_type,MeetingOrganization.connect_types.keys.to_a , label: 'Connection Type'
+			    .col-md-6
+		        	.field
+		        		=f.text_field :connect_address
+	    .col-md-6	  
+			.field.dial_out
 			    = f.check_box :QM_dial_out
-	.row
-		.col-md-4
-			.field
-           		=f.select :connect_type,MeetingOrganization.connect_types.keys.to_a , label: 'Connection Type'
-        .col-md-4
-        	.field
-        		=f.text_field :connect_address
-		
+
+			.row style="display:none;"
+			  
+				.col-md-2
+					.field
+					   = f.check_box :audio
+			    .col-md-2
+					.field
+					   = f.check_box :webRTC
+				.col-md-2
+					.field
+					   = f.check_box :ISDN
+				.col-md-2
+					.field
+					   = f.check_box :IP
+
+				.col-md-2
+					.field
+					   = f.check_box :URL
+	
+javascript:
+	$(".dial_in").click(function(){  
+	  $(this).next("div").toggle();
+
+	});
+	$(".dial_out").click(function(){  
+	  $(this).next("div").toggle();
+
+	});	

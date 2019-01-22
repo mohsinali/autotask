@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $.listen 'parsley:field:error', (ParsleyField) ->
+    pElement = ParsleyField.$element.parent('div').prev().find('p')
+    pElement.css 'color', 'red'
+    
   $(document).on 'change', '#organizations_select', (evt) ->
     $.ajax 'update_contacts',
       type: 'GET'
