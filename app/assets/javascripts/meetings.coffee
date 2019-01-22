@@ -33,9 +33,8 @@ $ ->
   $('#meeting_end_time').datetimepicker
         uiLibrary: 'bootstrap4'
         
-  $('.dial_in').click ->
-    alert'ayesha'
+  
+  $(document).on 'click' , '.dial_in', (evt)->
     $(this).next('div').toggle()
-
-  $('.dial_out').click ->
+  $(document).on 'click' , '.dial_out', (evt)->
     $(this).next('div').toggle()
