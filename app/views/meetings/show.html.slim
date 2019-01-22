@@ -15,15 +15,12 @@ p
   strong Organization name:
  
 p
-  strong Booked by:
-  = @meeting.contact
-p
- 
   strong Operator:
   = @meeting.user.name
-p
-  strong Agenda:
-  = @meeting.agenda
+
+/ p
+/   strong Meeting Host:
+/   = #@meeting.contact.first_name
 p
   strong Call recording:
   = @meeting.call_recording
@@ -41,10 +38,53 @@ p
   = @meeting.concierage
 p
   strong Organization:
-  
-p
-  strong User:
-  = @meeting.user.name
+
+h5 Participants
+table.table
+  - @meeting.meeting_organizations.each do |i| 
+    tr
+      td Internal
+      td =i.organization.name 
+      -if i.dial_in == true
+          td Dial_in
+          td =i.connect_type
+          td =i.connect_address
+      -else 
+          td QM Dial_out
+          -if i.audio == true
+              td Audio
+          -if i.webRTC == true
+              td webRTC
+          -if i.URL == true
+              td URL
+          -if i.ISDN == true
+              td ISDN
+          -if i.IP == true
+              td IP
+          
+  - @meeting.meeting_externals.each do |i| 
+    tr
+      td External
+      td =i.external.name
+      -if i.dial_in == true
+          td Dial_in
+          td =i.connect_type
+          td =i.connect_address
+      -else 
+          td QM Dial_out
+          -if i.audio == true
+              td Audio
+          -if i.webRTC == true
+              td webRTC
+          -if i.URL == true
+              td URL
+          -if i.ISDN == true
+              td ISDN
+          -if i.IP == true
+              td IP
+          
+              
+           
 
 = link_to 'Edit', edit_meeting_path(@meeting)
 

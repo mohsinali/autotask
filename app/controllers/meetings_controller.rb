@@ -16,7 +16,8 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
-    @meeting= Meeting.find(params[:id])  
+    @meeting= Meeting.find(params[:id]) 
+    
 
   end
 
