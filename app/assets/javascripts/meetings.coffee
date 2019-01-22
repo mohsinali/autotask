@@ -5,7 +5,7 @@ $ ->
   $.listen 'parsley:field:error', (ParsleyField) ->
     pElement = ParsleyField.$element.parent('div').prev().find('p')
     pElement.css 'color', 'red'
-    
+
   $(document).on 'change', '#organizations_select', (evt) ->
     $.ajax 'update_contacts',
       type: 'GET'
@@ -33,4 +33,9 @@ $ ->
   $('#meeting_end_time').datetimepicker
         uiLibrary: 'bootstrap4'
         
-  
+  $('.dial_in').click ->
+    alert'ayesha'
+    $(this).next('div').toggle()
+
+  $('.dial_out').click ->
+    $(this).next('div').toggle()
