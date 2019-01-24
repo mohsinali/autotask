@@ -45,10 +45,11 @@ p#notice = notice
     
     br
   .col-md-12
-      p style='border:1px solid gray;, padding:5px;'
+      .border
         strong Agenda
         br
         = @meeting.agenda
+  br
   br
 h5 Participants
 table.table
@@ -93,7 +94,9 @@ table.table
               td ISDN
           -if i.IP == true
               td IP
-          
+      td 
+        strong last tested on : 
+        =i.external.call_testing.date
               
            
 
