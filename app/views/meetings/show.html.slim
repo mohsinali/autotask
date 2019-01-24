@@ -1,44 +1,55 @@
 p#notice = notice
+.row
+  .col-md-6
+    p
+      strong Title:
+      = @meeting.title
+    p
+      strong Operator:
+      = @meeting.user.name
+    p
+      strong Start time:
+      = @meeting.start_time
+    p
+      strong End time:
+      = @meeting.end_time
 
-p
-  strong Title:
-  = @meeting.title
-
-p
-  strong Start time:
-  = @meeting.start_time
-p
-  strong End time:
-  = @meeting.end_time
-
-p
-  strong Organization name:
- 
-p
-  strong Operator:
-  = @meeting.user.name
-
-/ p
-/   strong Meeting Host:
-/   = #@meeting.contact.first_name
-p
-  strong Call recording:
-  = @meeting.call_recording
-p
-  strong Test call:
-  = @meeting.test_call
-p
-  strong Cancel call:
-  = @meeting.cancel_call
-p
-  strong Setup call:
-  = @meeting.setup_call
-p
-  strong Concierage:
-  = @meeting.concierage
-p
-  strong Organization:
-
+    p
+      strong Organization name:
+      =@organization.name
+     
+    p
+      strong Meeting Host:
+      = @organizer.first_name + @organizer.last_name
+  .col-md-6
+    h5 Services
+    -if @meeting.call_recording == true
+      strong Call recording  
+      br    
+    -if @meeting.test_call == true
+      strong Test call
+      br
+      
+    -if @meeting.cancel_call == true
+      strong Cancel call
+      br
+     
+    -if @meeting.setup_call == true
+      strong Setup call
+      br
+      
+    -if @meeting.concierage == true
+      strong Concierage
+      br
+     
+    
+    br
+  .col-md-12
+      p style='border:1px solid gray;, padding:5px;'
+        strong Agenda
+        br
+        = @meeting.agenda
+  br
 h5 Participants
 table.table
   - @meeting.meeting_organizations.each do |i| 
@@ -49,7 +60,7 @@ table.table
           td Dial_in
           td =i.connect_type
           td =i.connect_address
-      -else 
+      -if i.QM_dial_out == true 
           td QM Dial_out
           -if i.audio == true
               td Audio

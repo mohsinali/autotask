@@ -1,4 +1,5 @@
 class Meeting < ApplicationRecord
+  paginates_per 5
   #Enum
   enum call_type: [:internal, :external]
 

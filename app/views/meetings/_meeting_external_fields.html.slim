@@ -16,7 +16,7 @@
 			       		=f.select :connect_type,MeetingExternal.connect_types.keys.to_a , label: 'Connection Type'
 			    .col-md-6
 		        	.field
-		        		=f.text_field :connect_address, :required => true 
+		        		=f.text_field :connect_address
 	    .col-md-6	  
 			.field.dial_out
 			    = f.check_box :QM_dial_out
@@ -39,4 +39,5 @@
 				.col-md-2
 					.field
 					   = f.check_box :URL
+	= link_to_remove_association "remove organization", f
 	

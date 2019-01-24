@@ -38,3 +38,5 @@ $ ->
     $(this).next('div').toggle()
   $(document).on 'click' , '.dial_out', (evt)->
     $(this).next('div').toggle()
+  $('tr[data-href]').click ->
+    window.location = $(this).data('href')

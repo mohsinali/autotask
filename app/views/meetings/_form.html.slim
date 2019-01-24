@@ -45,14 +45,14 @@
             h5 Add Participants
             #meeting_organizations
                = f.fields_for :meeting_organizations do |participant|
-                  = render 'meeting_organization_field', f: participant
+                  = render 'meeting_organization_fields', f: participant
                .links
                   = link_to_add_association 'Add Internal Organizations', f, :meeting_organizations , class:'btn btn-danger'
   br
            
             #meeting_organizations
                = f.fields_for :meeting_externals do |participant|
-                  = render 'meeting_external_field', f: participant
+                  = render 'meeting_external_fields', f: participant
                .links
                   = link_to_add_association 'Add External Organizations', f, :meeting_externals  , class:'btn btn-success'       
 

@@ -7,16 +7,15 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     @meetings = Meeting.all
-    @organizations = Organization.all
-    @meetings = @user.meetings
-    @contacts = Contact.where("Organization_id = ?", Organization.first.id)
-     @contact = Contact.where("id = ?", params[:contact_id])
+    @meetings = Meeting.order(:start_time).page params[:page]
   end
 
   # GET /meetings/1
   # GET /meetings/1.json
   def show
     @meeting= Meeting.find(params[:id]) 
+    @organization=Organization.find(@meeting.organization_id)
+    @organizer=Contact.find(@meeting.contact_id)
     
 
   end
@@ -32,6 +31,10 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
+    @user = @meeting.user
+    @organizations = Organization.all
+    @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
+    @externals = External.all
   end
 
   # POST /meetings
@@ -41,7 +44,7 @@ class MeetingsController < ApplicationController
     @meeting =  current_user.meetings.build(meeting_params)
     @organizations = Organization.all
     @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
-   
+    @externals = External.all
                                                                                                                                                                                                                                                                      
     respond_to do |format|
       if @meeting.save
