@@ -3,8 +3,8 @@ class CreateMeetings < ActiveRecord::Migration[5.2]
     create_table :meetings do |t|
       t.string :title
       t.date :date
-      t.datetime :start_time
-      t.datetime :end_time
+      t.string :start_time
+      t.string :end_time
       t.string :duration
       t.string :org_name
       t.string :booked_by

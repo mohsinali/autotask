@@ -2,7 +2,7 @@
 // Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
 @import "bootstrap";
 
-// make all images responsive by default
+
 img {
   @extend .img-fluid;
   margin: 0 auto;
@@ -53,10 +53,10 @@ section {
   margin: 0 auto;
 }
 .authform form {
-  @extend .card;
+  @extend .card !optional;
   @extend .col-md-9;
   padding-bottom: 40px;
-  @extend .bg-light;
+  @extend .bg-light !optional;
   @extend .small;
 }
 .authform .right {
@@ -67,7 +67,7 @@ section {
   @extend .btn-primary;
 }
 .authform fieldset {
-  @extend .card;
+  @extend .card !optional;
 }
 #error_explanation:not(:empty) {
   @extend .alert;

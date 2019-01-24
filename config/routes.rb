@@ -3,8 +3,15 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  resources :meetings
+  resources :meetings do
+    collection do
+      get :update_contacts
+      get :update_organizations
+      get :update_externals
 
+    end
+  end
+ 
   get 'get_contacts_by_organization/:organization_id', to: 'contacts#get_contacts_by_organization'
   get 'comments/index'
   get 'comments/new'

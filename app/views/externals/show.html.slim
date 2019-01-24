@@ -1,27 +1,90 @@
 p#notice = notice
+.row
+  .col-md-6
+    h5 External Organizations Details
+    table.table
+        tr
+          td 
+            strong Name:
+          td = @external.name
+        tr
+          td
+            strong Questmark reference:
+          td = @external.questmark_reference
+        tr
+          td
+            strong Room:
+          td  = @external.room
+hr
+h5 Call Testing Details of Externals
+hr
+.row
+  .col-md-6
+    table.table
+            tr
+              td 
+                strong Contact Name:
+              td = @external.call_testing.contact_name
+            tr
+              td 
+                strong  Contact Email:
+              td = @external.call_testing.contact_name
+            tr
+              td 
+                strong Conatct Phone:
+              td = @external.call_testing.contact_phone
+            tr
+              td 
+                strong Testing Status:
+              td = @external.call_testing.testing_status
+            tr
+              td 
+                strong Testing Result:
+                -if @external.call_testing.testing_method == true
+                   td Successful Dialing In
+                -else
+                    td Unsuccessful Dialing In
+            tr
+              td 
+                strong Testing With:
+              td = @external.call_testing.testing_with
+            tr
+              td 
+                strong Testing with #{@external.call_testing.testing_with} Result:
+                -if @external.call_testing.testing_with_method == true
+                 td Successful Dialing In
+                -else
+                 td Unsuccessful Dialing In
 
-p
-  strong Name:
-  = @external.name
-p
-  strong Questmark reference:
-  = @external.questmark_reference
-p
-  strong Room:
-  = @external.room
-p
-  strong Organization:
-  = @external.organization
-h2 Comments
-= @comments.each do |comment| 
-    strong 
-    = comment.user_id
-    br
-    = comment.content 
-    
-  
-
-= render "comments/form" 
+  .col-md-6
+    table.table
+        tr
+          td 
+            strong  IP Address:
+          td = @external.call_testing.ip_address
+        tr
+          td 
+            strong URL:
+          td = @external.call_testing.url
+        tr
+          td 
+            strong ISDN:
+          td = @external.call_testing.isdn
+        tr
+          td 
+            strong  Skype Details:
+          td = @external.call_testing.skype_detail
+        tr
+          td 
+            strong Other Details:
+          td = @external.call_testing.other
+.row
+   .col-md-8
+    h2 Comments
+    - @comments.each do |comment| 
+            strong = comment.user.name  
+            p = comment.content 
+    = render "comments/form" 
 = link_to 'Edit', edit_external_path(@external)
 
 = link_to 'Back', externals_path

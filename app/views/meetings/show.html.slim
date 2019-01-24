@@ -1,54 +1,105 @@
 p#notice = notice
+.row
+  .col-md-6
+    p
+      strong Title:
+      = @meeting.title
+    p
+      strong Operator:
+      = @meeting.user.name
+    p
+      strong Start time:
+      = @meeting.start_time
+    p
+      strong End time:
+      = @meeting.end_time
 
-p
-  strong Title:
-  = @meeting.title
-p
-  strong Date:
-  = @meeting.date
-p
-  strong Start time:
-  = @meeting.start_time
-p
-  strong End time:
-  = @meeting.end_time
-p
-  strong Duration:
-  = @meeting.duration
-p
-  strong Org name:
-  = @meeting.org_name
-p
-  strong Booked by:
-  = @meeting.booked_by
-p
-  strong Operator:
-  = @meeting.operator
-p
-  strong Agenda:
-  = @meeting.agenda
-p
-  strong Call recording:
-  = @meeting.call_recording
-p
-  strong Test call:
-  = @meeting.test_call
-p
-  strong Cancel call:
-  = @meeting.cancel_call
-p
-  strong Setup call:
-  = @meeting.setup_call
-p
-  strong Concierage:
-  = @meeting.concierage
-p
-  strong Organization:
-  = @meeting.organization
-p
-  strong User:
-  = @meeting.user
+    p
+      strong Organization name:
+      =@organization.name
+     
+    p
+      strong Meeting Host:
+      = @organizer.first_name + @organizer.last_name
+  .col-md-6
+    h5 Services
+    -if @meeting.call_recording == true
+      strong Call recording  
+      br    
+    -if @meeting.test_call == true
+      strong Test call
+      br
+      
+    -if @meeting.cancel_call == true
+      strong Cancel call
+      br
+     
+    -if @meeting.setup_call == true
+      strong Setup call
+      br
+      
+    -if @meeting.concierage == true
+      strong Concierage
+      br
+     
+    
+    br
+  .col-md-12
+      .border
+        strong Agenda
+        br
+        = @meeting.agenda
+  br
+  br
+h5 Participants
+table.table
+  - @meeting.meeting_organizations.each do |i| 
+    tr
+      td Internal
+      td =i.organization.name 
+      -if i.dial_in == true
+          td Dial_in
+          td =i.connect_type
+          td =i.connect_address
+      -if i.QM_dial_out == true 
+          td QM Dial_out
+          -if i.audio == true
+              td Audio
+          -if i.webRTC == true
+              td webRTC
+          -if i.URL == true
+              td URL
+          -if i.ISDN == true
+              td ISDN
+          -if i.IP == true
+              td IP
+          
+  - @meeting.meeting_externals.each do |i| 
+    tr
+      td External
+      td =i.external.name
+      -if i.dial_in == true
+          td Dial_in
+          td =i.connect_type
+          td =i.connect_address
+      -else 
+          td QM Dial_out
+          -if i.audio == true
+              td Audio
+          -if i.webRTC == true
+              td webRTC
+          -if i.URL == true
+              td URL
+          -if i.ISDN == true
+              td ISDN
+          -if i.IP == true
+              td IP
+      td 
+        strong last tested on : 
+        =i.external.call_testing.date
+              
+           
 
-=> link_to 'Edit', edit_meeting_path(@meeting)
-'|
-=< link_to 'Back', meetings_path
+= link_to 'Edit', edit_meeting_path(@meeting)
+
+= link_to 'Back', meetings_path

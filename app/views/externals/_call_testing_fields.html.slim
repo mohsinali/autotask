@@ -1,0 +1,56 @@
+.nested-fields
+  .field
+    
+    = f.text_field :contact_name , :required => true
+  .field
+    
+    = f.text_field :contact_email, :required => true
+  .field
+    
+    = f.text_field :contact_phone, :required => true
+  .field
+    
+    = f.text_field :ip_address , :required => true
+  .field
+    
+    = f.text_field :url ,  :required => true
+  .field
+    
+    = f.text_field :isdn, :required => true
+  .field
+   
+    = f.text_field :skype_detail, :required => true
+  .field
+    
+    = f.text_field :other
+  .field
+    
+    = f.select :testing_status, CallTesting.testing_statuses.keys.to_a
+  .field
+    
+    = f.radio_button :testing_method, true , {label:'Successful dialing in'}
+
+  .field 
+  
+    = f.radio_button :testing_method, false , {label:'Unsuccessful dialing in'}
+  .field
+    
+    = f.select :testing_with, CallTesting.testing_withs.keys.to_a
+  
+  .field
+   
+    = f.radio_button :testing_with_method, true , {label:'Successful dialing in'}
+
+  .field 
+    
+    = f.radio_button :testing_with_method, false , {label:'Unsuccessful dialing in'}
+  .field
+   
+    = f.text_field :date  , {:id => 'datetime'}
+    
+  
+
+javascript:
+   $('#datetime').datetimepicker({
+       uiLibrary: 'bootstrap4'
+   });
