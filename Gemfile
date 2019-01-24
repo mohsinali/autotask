@@ -9,6 +9,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'paloma', '~> 5.1.0'
+gem 'country_select', '~> 4.0'
 gem "rolify"
 gem "cocoon"
 gem 'kaminari'

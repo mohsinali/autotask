@@ -22,4 +22,8 @@ class Organization < ApplicationRecord
   def can_validate
     true
   end
+  def country_name
+   country = Country[country_code]
+   country.translations[I18n.locale.to_s] || country.name
+  end
 end

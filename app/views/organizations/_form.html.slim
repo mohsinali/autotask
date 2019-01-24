@@ -42,8 +42,9 @@
         
         = f.text_field :region , :required => true 
       .field
-        
-        = f.text_field :country , :required => true 
+        = f.label 'Country'
+        br
+        = f.country_select :country, ([ "US","GB", "FR", "DE" ]), iso_codes: true, class:"form-control col-lg-12 col-md-12 col-sm-12 col-12" 
      
       .field
         
