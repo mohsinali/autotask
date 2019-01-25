@@ -21,7 +21,7 @@
         #call_testing 
           = f.fields_for :call_testing, @external.call_testing do |call_testing|
             = render 'call_testing_fields', f: call_testing
-          = link_to_add_association 'Add Call Testing', f, :call_testing,:force_non_association_create => true , :id=> 'stop'
+          = link_to_add_association 'Add Call Testing', f, :call_testing,:force_non_association_create => true , :id=> 'stop',class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"
  
          
         .actions = f.submit

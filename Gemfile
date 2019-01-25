@@ -17,6 +17,7 @@ gem "parsley-rails"
 gem 'jquery-ui-rails'
 gem 'momentjs-rails' 
 gem 'bootstrap_form'
+gem 'bootstrap-glyphicons'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -47,14 +47,14 @@
                = f.fields_for :meeting_organizations do |participant|
                   = render 'meeting_organization_fields', f: participant
                .links
-                  = link_to_add_association 'Add Internal Organizations', f, :meeting_organizations , class:'btn btn-danger'
+                  = link_to_add_association 'Add Internal Organizations', f, :meeting_organizations , class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"
   br
            
             #meeting_organizations
                = f.fields_for :meeting_externals do |participant|
                   = render 'meeting_external_fields', f: participant
                .links
-                  = link_to_add_association 'Add External Organizations', f, :meeting_externals  , class:'btn btn-success'       
+                  = link_to_add_association 'Add External Organizations', f, :meeting_externals  , class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"      
 
   .field
     

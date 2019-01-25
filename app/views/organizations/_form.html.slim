@@ -65,7 +65,8 @@
       = f.fields_for :contacts do |contact|
         = render 'contact_fields', f: contact
       .links
-        = link_to_add_association 'add contact', f, :contacts
+        = link_to_add_association 'add contact', f, :contacts , class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus" 
+
    
     h2 sites
     br
@@ -73,7 +74,7 @@
            = f.fields_for :sites do |site|
               = render 'site_fields', f: site
            .links
-              = link_to_add_association 'add site', f, :sites
+              = link_to_add_association 'add site', f, :sites, class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"
      
 
 
