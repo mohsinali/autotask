@@ -2,10 +2,10 @@
 	.row
 		.col-md-4
 	 			.field
-	     			= f.text_field :site_name 
+	     			= f.text_field :site_name , required: true
 	    .col-md-4
 	     		.field
-	     			= f.text_field :contact 
+	     			= f.text_field :contact , data: {parsley_required: "",parsley_type: "number" }
 	    .col-md-4
 	    		.field
 	     			= f.text_field :address 

@@ -18,16 +18,16 @@
     
       .field
         
-        = f.text_field :email ,  :required => true 
+        = f.text_field :email ,  data: {parsley_required: "",parsley_type: "email" }
       .field
      
-        = f.text_field :main_phone_contact , :required => true  
+        = f.text_field :main_phone_contact ,data: {parsley_required: "",parsley_type: "number" }  
       .field
         =f.label 'how do u want to connect the meeeting'
         =f.select :contact_method,Organization.contact_methods.keys.to_a 
       .field
         
-        = f.text_area :address ,  :required => true  
+        = f.text_area :address ,   :required => true  
       .field
         
         =f.check_box :questmark_status
@@ -37,7 +37,7 @@
         
         = f.text_field :street 
       .field
-        = f.text_field :postal_code 
+        = f.text_field :postal_code , data: {parsley_required: "",parsley_type: "number" }
       .field
         
         = f.text_field :region , :required => true 
@@ -51,10 +51,10 @@
         = f.text_field :fax 
       .field
         
-        = f.text_field :website , :required => true 
+        = f.text_field :website , data: {parsley_required: "",parsley_type: "url" }
       .field
         
-        = f.text_field :other_phone 
+        = f.text_field :other_phone , data: {parsley_required: "",parsley_type: "number" }
      
       / .field
         =# f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
