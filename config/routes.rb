@@ -6,9 +6,6 @@ Rails.application.routes.draw do
   resources :meetings do
     collection do
       get :update_contacts
-      get :update_organizations
-      get :update_externals
-
     end
   end
  
