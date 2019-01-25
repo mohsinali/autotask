@@ -48,7 +48,7 @@
      
       .field
         
-        = f.text_field :fax 
+        = f.text_field :fax ,data: {parsley_type: "number" }
       .field
         
         = f.text_field :website , data: {parsley_required: "",parsley_type: "url" }
