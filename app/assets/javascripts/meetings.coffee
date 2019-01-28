@@ -29,8 +29,8 @@ $ ->
     defaultHour: 23
     defaultMinute: 59
     minuteIncrement: 1
-  el = document.getElementById('meeting_end_time')
-  flatpickr el,
+  pl = document.getElementById('meeting_end_time')
+  flatpickr pl,
     enableTime: true
     altInput: true
     minDate: 'today'
