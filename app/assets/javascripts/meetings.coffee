@@ -19,20 +19,41 @@ $ ->
         console.log("Dynamic country select OK!")
 
 
-  
+  el = document.getElementById('meeting_start_time')
+  flatpickr el,
+    enableTime: true
+    altInput: true
+    minDate: 'today'
+    altFormat: 'F j, Y h:i K'
+    dateFormat: 'Y-m-d H:i'
+    defaultHour: 23
+    defaultMinute: 59
+    minuteIncrement: 1
+  el = document.getElementById('meeting_end_time')
+  flatpickr el,
+    enableTime: true
+    altInput: true
+    minDate: 'today'
+    altFormat: 'F j, Y h:i K'
+    dateFormat: 'Y-m-d H:i'
+    defaultHour: 23
+    defaultMinute: 59
+    minuteIncrement: 1
 
   $(document).on 'blur', '.meeting', (evt) ->
     past  = moment($('#meeting_start_time').val())
+    console.log(past)
     present = moment($('#meeting_end_time').val())
     rate = moment.duration(present.diff(past)).humanize()
     $('#result').html(rate)
 
   
-  $('#meeting_start_time').datetimepicker
-        uiLibrary: 'bootstrap4'
-  $('#meeting_end_time').datetimepicker
-        uiLibrary: 'bootstrap4'
-        
+ 
+  # $(document).ready ->
+  #   flatpickr '#meeting_start_time'
+  
+
+     
   
   $(document).on 'click' , '.dial_in', (evt)->
     $(this).next('div').toggle()

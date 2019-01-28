@@ -22,6 +22,8 @@
 //= require parsley
 //= require twitter/bootstrap
 //= require moment
+//= require flatpickr
+//= require flatpickr/l10n/es
 //= require_tree .
 
 $(document).ready(function () {
