@@ -8,19 +8,24 @@ p#notice = notice
       strong Operator:
       = @meeting.user.name
     p
+      strong Organization name:
+      =@organization.name
+    p
+      strong Booked by:
+      =[@booked_by.first_name, @booked_by.last_name].join(' ').squeeze(' ')
+
+
+    p
       strong Start time:
       = @meeting.start_time
     p
       strong End time:
       = @meeting.end_time
-
-    p
-      strong Organization name:
-      =@organization.name
+ 
      
     p
       strong Meeting Host:
-      = @organizer.first_name + @organizer.last_name
+      = [@organizer.first_name, @organizer.last_name].join(' ').squeeze(' ')
   .col-md-6
     h5 Services
     -if @meeting.call_recording == true

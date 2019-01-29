@@ -8,16 +8,22 @@
           li = message
   .row
     .col-md-5
-        p booked by:   #{@user.name}
+        p Operator:   #{@user.name}
+  .row
+    .col-md-4
         .field
          
           =f.select :organization_id , options_for_select(@organizations.collect{|organization|[organization.name.titleize, organization.id] }, 1), {}, { id: 'organizations_select' } 
+    .col-md-4
         .field
          
           = f.text_field :title , :required => true 
-    .col-md-5 
-        br
-        br
+    .col-md-4
+        .field
+           
+            = f.select :booked_by, options_for_select(@booked_by.collect { |booked_by|[booked_by.first_name.titleize]}), {}, { id: 'booked_by_select' }
+  .row
+      .col-md-4
         .meeting
             
                  .field    
@@ -25,7 +31,7 @@
                             
                  .field                    
                     = f.text_field :end_time  , {class: 'meeting_end_time',required: true }
-                         
+      .col-md-4                 
         .field 
           = f.label :duration 
           #result 

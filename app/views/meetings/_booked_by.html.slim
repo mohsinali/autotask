@@ -1,0 +1,3 @@
+.field
+      = f.label :booked_by
+      = f.select :booked_by, options_for_select(@booked_by.collect { |booked_by|[booked_by.first_name.titleize]}), {}, { id: 'booked_by_select' } 

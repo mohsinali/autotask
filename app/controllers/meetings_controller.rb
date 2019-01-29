@@ -16,6 +16,7 @@ class MeetingsController < ApplicationController
     @meeting= Meeting.find(params[:id]) 
     @organization=Organization.find(@meeting.organization_id)
     @organizer=Contact.find(@meeting.contact_id)
+    @booked_by=Contact.find(@meeting.booked_by)
     
 
   end
@@ -26,14 +27,16 @@ class MeetingsController < ApplicationController
     @user = current_user
     @organizations = Organization.all
     @externals = External.all
-    @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
+    @booked_by = Contact.other.where("Organization_id = ?", Organization.first.id) 
+    @contacts = Contact.host.where("Organization_id = ?", Organization.first.id) 
   end
 
   # GET /meetings/1/edit
   def edit
     @user = @meeting.user
     @organizations = Organization.all
-    @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
+    @contacts = Contact.host.where("Organization_id = ?", Organization.first.id) 
+    @booked_by = Contact.other.where("Organization_id = ?", Organization.first.id) 
     @externals = External.all
   end
 
@@ -43,7 +46,8 @@ class MeetingsController < ApplicationController
      @user = current_user
     @meeting =  current_user.meetings.build(meeting_params)
     @organizations = Organization.all
-    @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
+    @contacts = Contact.host.where("Organization_id = ?", Organization.first.id) 
+    @booked_by = Contact.other.where("Organization_id = ?", Organization.first.id) 
     @externals = External.all
                                                                                                                                                                                                                                                                      
     respond_to do |format|
@@ -81,7 +85,8 @@ class MeetingsController < ApplicationController
     end
   end
   def update_contacts
-    @contacts = Contact.where("organization_id = ?", params[:organization_id])
+    @contacts = Contact.host.where("organization_id = ?", params[:organization_id])
+    @booked_by = Contact.other.where("organization_id = ?", params[:organization_id])
     respond_to do |format|
       format.js
     end

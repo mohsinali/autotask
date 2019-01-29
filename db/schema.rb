@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_21_122317) do
+ActiveRecord::Schema.define(version: 2019_01_29_093050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2019_01_21_122317) do
     t.string "title"
     t.string "start_time"
     t.string "end_time"
-    t.string "booked_by"
+    t.integer "booked_by"
     t.text "agenda"
     t.boolean "call_recording"
     t.boolean "test_call"
@@ -154,30 +154,6 @@ ActiveRecord::Schema.define(version: 2019_01_21_122317) do
     t.string "email"
     t.integer "contact_method"
     t.index ["user_id"], name: "index_organizations_on_user_id"
-  end
-
-  create_table "participants", force: :cascade do |t|
-    t.string "connect_type"
-    t.string "connect_address"
-    t.integer "participant_type"
-    t.integer "call_type"
-    t.string "org_site"
-    t.boolean "dial_in"
-    t.boolean "QM_dialout"
-    t.boolean "audio"
-    t.boolean "webRTC"
-    t.boolean "ISDN"
-    t.boolean "IP"
-    t.boolean "URL"
-    t.string "external_room"
-    t.bigint "organization_id"
-    t.bigint "external_id"
-    t.bigint "meeting_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["external_id"], name: "index_participants_on_external_id"
-    t.index ["meeting_id"], name: "index_participants_on_meeting_id"
-    t.index ["organization_id"], name: "index_participants_on_organization_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -232,8 +208,5 @@ ActiveRecord::Schema.define(version: 2019_01_21_122317) do
   add_foreign_key "meetings", "organizations"
   add_foreign_key "meetings", "users"
   add_foreign_key "organizations", "users"
-  add_foreign_key "participants", "externals"
-  add_foreign_key "participants", "meetings"
-  add_foreign_key "participants", "organizations"
   add_foreign_key "sites", "organizations"
 end
