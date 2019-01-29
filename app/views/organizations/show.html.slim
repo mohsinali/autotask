@@ -1,102 +1,110 @@
 p#notice = notice
+h3 Organization Details
 .row
-  .col-md-6
-    h5 Organization Details
-    table.table
 
-      tr
-        td 
+    .col-md-2
           strong Name:
-        td = @organization.name
-      tr
-        td 
+    .col-md-4
+         = @organization.name
+    .col-md-2      
+        strong Postal code:
+    .col-md-4   
+       = @organization.postal_code 
+    
+      
+      
+.row  
+    .col-md-2   
+        strong Email:
+    .col-md-4
+       = @organization.email
+    
+    .col-md-2        
+        strong Street:
+    .col-md-4   
+       = @organization.street
+.row
+    .col-md-2   
+        strong Main phone contact:
+    .col-md-4
+       = @organization.main_phone_contact
+  
+    .col-md-2
+        strong Address:
+    .col-md-4
+       = @organization.address
+.row
+    
+    .col-md-2   
+        strong Other phone:
+    .col-md-4
+       = @organization.other_phone
+    .col-md-2      
+      strong Region:
+    .col-md-4   
+     = @organization.region
+.row  
+  .col-md-2
           strong Organization Type:
-        td = @organization.org_type
+  .col-md-4
+         = @organization.org_type   
+  .col-md-2          
+      strong Country:
+  .col-md-4   
+     = @organization.country
+.row  
+  .col-md-2      
+      strong Fax:
+  .col-md-4   
+     = @organization.fax
+ 
+  .col-md-2   
+        strong Website:
+  .col-md-4   
+       = @organization.website
+ 
+h5 Contacts
+table.table.table-striped
+  thead
+    tr
+      th scope="col" First Name
+      th scope="col" Last Name
+      th scope="col" Email
+      th scope="col" Phone
+      th scope="col" Job Role
+      
+  tbody              
+    - @organization.contacts.each do |contact|
       tr
-        td 
-          strong Address:
-        td = @organization.address
-      tr
-        td 
-          strong Email:
-        td = @organization.email
-      tr
-        td 
-          strong Main phone contact:
-        td = @organization.main_phone_contact
-      tr
-        td 
-          strong Other phone:
-        td = @organization.other_phone
-      tr
-        td 
-          strong Website:
-        td = @organization.website
-      tr
-        td 
-          strong Country:
-        td = @organization.country
-      tr
-        td 
-          strong Street:
-        td = @organization.street
-      tr
-        td 
-          strong Postal code:
-        td = @organization.postal_code
-      tr
-        td 
-          strong Region:
-        td = @organization.region
-      tr
-        td 
-          strong Fax:
-        td = @organization.fax
-  .col-md-6
-    h4 Contacts
-    table.table
-      -@organization.contacts.each do |contact|
-            tr
-              td 
-                strong First Name:
-              td = contact.first_name
-            tr
-              td 
-                strong Last Name:
-              td = contact.last_name
-            tr
-              td 
-                strong Email:
-              td = contact.email
-            tr
-              td 
-                strong Phone:
-              td = contact.contact_phone
-            tr
-              td 
-                strong Job Role:
-              td = contact.contact_type
-    h4 Sites
-    table.table
-      -@organization.sites.each do |site|
-            tr
-              td 
-                strong Site Name:
-              td = site.site_name
-            tr
-              td 
-                strong Site Contact:
-              td = site.contact
-            tr
-              td 
-                strong Address:
-              td = site.address
 
-  
-  
-  
-  
-  
+        td  = contact.first_name
+        td = contact.last_name
+        td  = contact.email  
+        td = contact.contact_phone
+        td = contact.contact_type
+br        
+
+h5 Sites
+table.table.table-striped
+  thead
+    tr
+      th scope="col" Site Name
+      th scope="col" Contact 
+      th scope="col" Address
+      
+  tbody
+    -@organization.sites.each do |site|
+     tr
+        td = site.site_name
+        td = site.contact
+        td = site.address
+
+br
+
+
+
+
+
 = link_to 'Destroy', @organization, data: { confirm: 'Are you sure?' }, method: :delete , class: 'btn btn-danger'
 = link_to 'Edit', edit_organization_path(@organization) , class: 'btn btn-success'
 
