@@ -59,7 +59,7 @@
       / .field
         =# f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
    
-    h2 Contacts
+    h2.total-count Contacts
     br
     #contacts
       = f.fields_for :contacts do |contact|
