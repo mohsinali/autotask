@@ -8,5 +8,4 @@ $ ->
   	$('#stop').hide()
   $('tr[data-href]').click ->
 	  window.location = $(this).data('href')
-	 
-	
+  

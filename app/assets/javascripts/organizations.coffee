@@ -8,17 +8,6 @@ $ ->
 
 	$('tr[data-href]').click ->
 	  window.location = $(this).data('href')
-	# i = 0
-	# $('#addc').click ->
-	#     $(this).html i++
-	#     return
-	#   return
-	# $('#rmc').click ->
-	# 	 console.log('yes')
-	# $('#addc').on 'cocoon:after-insert', (e, insertedItem) ->
- #  		 count++
- #  		 console.log(count)
- 	
 	
 
 	

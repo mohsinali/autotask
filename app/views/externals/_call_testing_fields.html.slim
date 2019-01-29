@@ -1,4 +1,4 @@
-.nested-fields
+.nested-fields.non
   .field
     
     = f.text_field :contact_name , :required => true
@@ -46,7 +46,7 @@
     = f.radio_button :testing_with_method, false , {label:'Unsuccessful dialing in'}
   .field
    
-    = f.text_field :date  , {:id => 'datetime'}
+    = f.text_field :date  ,  {:required => true, :id => 'datetime'}
     
   
 
