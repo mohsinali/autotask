@@ -1,19 +1,22 @@
 .nested-fields
  .row
-  .col-md-5
+  .col-md-4
 	   .field
 	     
 	     = f.text_field :first_name , :required => true
+  .col-md-4
 	   .field
 	     
 	     = f.text_field :last_name ,  :required => true
+  .col-md-4
 	   .field
         
          =f.select :contact_type,  contact_Type: Contact.contact_types.keys.to_a 
-
-  .col-md-5   
+ .row
+  .col-md-4   
 	   .field
 	     = f.text_field :email ,data: {parsley_required: "",parsley_type: "email" }
+  .col-md-4
 	   .field
 	     
 	     = f.text_field :contact_phone ,data: {parsley_required: "",parsley_type: "number" }

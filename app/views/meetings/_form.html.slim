@@ -22,21 +22,20 @@
         .field
            
             = f.select :booked_by, options_for_select(@booked_by.collect { |booked_by|[booked_by.first_name.titleize]}), {}, { id: 'booked_by_select' }
-  .row
-      .col-md-4
-        .meeting
-            
-                 .field    
-                    = f.text_field :start_time , {class: 'meeting_start_time' , required: true} 
-                            
-                 .field                    
-                    = f.text_field :end_time  , {class: 'meeting_end_time',required: true }
-      .col-md-4                 
-        .field 
-          = f.label :duration 
-          #result 
- 
-  
+  .meeting
+    .row
+        .col-md-4
+             .field    
+                = f.text_field :start_time , {class: 'meeting_start_time' , required: true} 
+        .col-md-4
+             .field                    
+                = f.text_field :end_time  , {class: 'meeting_end_time',required: true }
+        .col-md-4                 
+          .field 
+            = f.label :duration 
+            #result 
+   
+    
   .row
     .col-md-4
         .field

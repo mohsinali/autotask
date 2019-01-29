@@ -8,58 +8,73 @@
           - @organization.errors.full_messages.each do |message|
             li = message
     .row
-     .col-md-5
+     .col-md-4
       .field
        
         = f.text_field :name , :required => true 
+     .col-md-4
       .field
         
         =f.select :org_type,  organization_Type: Organization.org_types.keys.to_a 
-    
+     .col-md-4
       .field
         
         = f.text_field :email ,  data: {parsley_required: "",parsley_type: "email" }
+    .row
+     .col-md-4
       .field
      
         = f.text_field :main_phone_contact ,data: {parsley_required: "",parsley_type: "number" }  
-      .field
-        =f.label 'how do u want to connect the meeeting'
-        =f.select :contact_method,Organization.contact_methods.keys.to_a 
-      .field
-        
-        = f.text_area :address ,   :required => true  
-      .field
-        
-        =f.check_box :questmark_status
      
-     .col-md-5   
+     .col-md-4  
       .field
         
-        = f.text_field :street 
+        = f.text_field :other_phone , data: {parsley_required: "",parsley_type: "number" }
+     .col-md-4
+      .field
+        =f.select :contact_method,Organization.contact_methods.keys.to_a , {label: 'how do u want to connect the meeeting'}
+     
+     
+    .row
+     .col-md-4
+      .field
+        
+        = f.text_area :address ,   :required => true 
+     .col-md-4   
+      .field
+        
+        = f.text_field :street
+     .col-md-4 
       .field
         = f.text_field :postal_code , data: {parsley_required: "",parsley_type: "number" }
+    .row
+     .col-md-4
       .field
         
         = f.text_field :region , :required => true 
+     .col-md-4
       .field
         = f.label 'Country'
         br
         = f.country_select :country, ([ "US","GB", "FR", "DE" ]), iso_codes: true, class:"form-control col-lg-12 col-md-12 col-sm-12 col-12" 
-     
+  
+     .col-md-4 
       .field
         
         = f.text_field :fax ,data: {parsley_type: "number" }
+    .row
+     .col-md-4
       .field
         
         = f.text_field :website , data: {parsley_required: "",parsley_type: "url" }
+     .col-md-4
       .field
         
-        = f.text_field :other_phone , data: {parsley_required: "",parsley_type: "number" }
-     
+        =f.check_box :questmark_status
       / .field
         =# f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
    
-    h2 Contacts
+    h5 Contacts
     #contacts
       = f.fields_for :contacts do |contact|
         = render 'contact_fields', f: contact
@@ -67,7 +82,7 @@
         = link_to_add_association 'add contact', f, :contacts , class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus" , id:'addc'
       .total-count
     br
-    h2 sites
+    h5 sites
     #sites
        = f.fields_for :sites do |site|
           = render 'site_fields', f: site
