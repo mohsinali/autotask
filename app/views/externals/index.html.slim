@@ -14,7 +14,7 @@ table.table.table-striped
 
   tbody
     - @externals.each do |external|
-      tr data-href= "/externals/#{external.id}"
+      tr data-href= "/externals/#{external.id}" onmouseover="this.style.cursor='pointer';"
         td = external.name
         td = external.call_testing.contact_name
         td = external.call_testing.contact_email

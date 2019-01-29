@@ -16,7 +16,7 @@ table.table.table-striped
 
   tbody
     - @organizations.each do |organization|
-          tr data-href= "/organizations/#{organization.id}"
+          tr data-href= "/organizations/#{organization.id}" onmouseover="this.style.cursor='pointer';"
             td = organization.name
             td = organization.main_phone_contact
             td = organization.email

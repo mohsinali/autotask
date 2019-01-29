@@ -1,53 +1,75 @@
 .nested-fields.non
-  .field
-    
-    = f.text_field :contact_name , :required => true
-  .field
-    
-    = f.text_field :contact_email, data: {parsley_required: "",parsley_type: "email" }
-  .field
-    
-    = f.text_field :contact_phone, data: {parsley_required: "",parsley_type: "number" }
-  .field
-    
-    = f.text_field :ip_address , :required => true
-  .field
-    
-    = f.text_field :url ,  data: {parsley_required: "",parsley_type: "url" }
-  .field
-    
-    = f.text_field :isdn, :required => true
-  .field
-   
-    = f.text_field :skype_detail, :required => true
-  .field
-    
-    = f.text_field :other
-  .field
-    
-    = f.select :testing_status, CallTesting.testing_statuses.keys.to_a
-  .field
-    
-    = f.radio_button :testing_method, true , {label:'Successful dialing in'}
-
-  .field 
+  .row
+    .col-md-4
+      .field
+        
+        = f.text_field :contact_name , :required => true
+    .col-md-4
+      .field
+        
+        = f.text_field :contact_email, data: {parsley_required: "",parsley_type: "email" }
+    .col-md-4
+      .field
+        
+        = f.text_field :contact_phone, data: {parsley_required: "",parsley_type: "number" }
+  .row
+    .col-md-4
+      .field
+        
+        = f.text_field :ip_address , :required => true
+    .col-md-4
+      .field
+        
+        = f.text_field :url ,  data: {parsley_required: "",parsley_type: "url" }
+    .col-md-4
+      .field
+        
+        = f.text_field :isdn, :required => true
+  .row
+    .col-md-4
+      .field
+       
+        = f.text_field :skype_detail, :required => true
+    .col-md-4
+      .field
+        
+        = f.text_field :other
+    .col-md-4
+      .field
+         
+          = f.text_field :date  ,  {:required => true, :id => 'datetime'}
+        
+  .row
+    .col-md-4
+     
+      .field
+        
+        = f.select :testing_status, CallTesting.testing_statuses.keys.to_a
+    .col-md-4
+      br
+      .field
+        
+        = f.radio_button :testing_method, true , {label:'Successful dialing in'}
   
-    = f.radio_button :testing_method, false , {label:'Unsuccessful dialing in'}
-  .field
+      .field 
+      
+        = f.radio_button :testing_method, false , {label:'Unsuccessful dialing in'}
+  .row
+    .col-md-4
     
-    = f.select :testing_with, CallTesting.testing_withs.keys.to_a
-  
-  .field
-   
-    = f.radio_button :testing_with_method, true , {label:'Successful dialing in'}
+      .field
+        
+        = f.select :testing_with, CallTesting.testing_withs.keys.to_a
+    .col-md-4
+      br  
+      .field
+       
+        = f.radio_button :testing_with_method, true , {label:'Successful dialing in'}
 
-  .field 
-    
-    = f.radio_button :testing_with_method, false , {label:'Unsuccessful dialing in'}
-  .field
-   
-    = f.text_field :date  ,  {:required => true, :id => 'datetime'}
-    
+      .field 
+        
+        = f.radio_button :testing_with_method, false , {label:'Unsuccessful dialing in'}
+      
   
 
 javascript:

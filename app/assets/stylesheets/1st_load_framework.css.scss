@@ -51,6 +51,7 @@ section {
   padding-top: 30px;
   max-width: 320px;
   margin: 0 auto;
+  background-color: #fff;
 }
 .authform form {
   @extend .card !optional;
@@ -80,4 +81,23 @@ section {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-sm;
+}
+.navbar-light .navbar-nav .nav-link  {
+     color:#fff; 
+}
+
+.nav-link:hover{
+  background-color: #fff;
+}
+.bg-light, .authform form {
+    background-color: #284358 !important;
+    color:#fff;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #284358 !important;
+    border-color: #6c757d;
+}
+h1,h3,h5{
+  color:#284358;
 }

@@ -6,25 +6,31 @@
         - @external.errors.full_messages.each do |message|
           li = message
   .row
-    .col-md-2
-    .col-md-6
+    .col-md-4
         .field
-          
+     
           = f.text_field :name , :required => true 
+    .col-md-4
         .field
           
           = f.text_field :questmark_reference, :required => true
+    .col-md-4
         .field
           
           = f.text_field :room , :required => true
-        h5 Call Testing Details
-        #call_testing 
-          = f.fields_for :call_testing, @external.call_testing do |call_testing|
-            = render 'call_testing_fields', f: call_testing
-          = link_to_add_association 'Add Call Testing', f, :call_testing,:force_non_association_create => true , :id=> 'stop',class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"
- 
-         
-        .actions = f.submit
+
+  h5 Call Testing Details
+  #call_testing 
+    = f.fields_for :call_testing, @external.call_testing do |call_testing|
+      = render 'call_testing_fields', f: call_testing
+    = link_to_add_association 'Add Call Testing', f, :call_testing,:force_non_association_create => true , :id=> 'stop',class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"
+
+  .row  
+    .col-md-3 
+      .actions 
+      = f.submit 
+    .col-md-3
+      = link_to 'Back', externals_path , class:'btn btn-success'
 
 javascript:
  $(document).ready(function(){

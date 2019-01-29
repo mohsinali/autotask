@@ -13,7 +13,7 @@ table.table.table-striped
       
   tbody
     - @meetings.each do |meeting|
-      tr data-href= "/meetings/#{meeting.id}"
+      tr data-href= "/meetings/#{meeting.id}" onmouseover="this.style.cursor='pointer';"
         td = meeting.title
         td = meeting.start_time
         td = meeting.end_time
