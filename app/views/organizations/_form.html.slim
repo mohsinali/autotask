@@ -59,23 +59,21 @@
       / .field
         =# f.collection_radio_buttons :user_type, Organization.user_types, :first, :first
    
-    h2.total-count Contacts
-    br
+    h2 Contacts
     #contacts
       = f.fields_for :contacts do |contact|
         = render 'contact_fields', f: contact
       .links
         = link_to_add_association 'add contact', f, :contacts , class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus" , id:'addc'
-
-   
-    h2 sites
+      .total-count
     br
-        #sites
-           = f.fields_for :sites do |site|
-              = render 'site_fields', f: site
-           .links
-              = link_to_add_association 'add site', f, :sites, class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus",id:'adds'
-     
+    h2 sites
+    #sites
+       = f.fields_for :sites do |site|
+          = render 'site_fields', f: site
+       .links
+          = link_to_add_association 'add site', f, :sites, class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus",id:'adds'
+       .total-count-site
 
 
     .btn = f.submit 

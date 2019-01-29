@@ -16,3 +16,13 @@
   font-size:20px;
   content: "Field " counter(idx) ":";
 }
+.total-count:after{
+	content: "total contacts: "counter(idx);
+	color:green;
+	padding:5px;
+}
+.total-count-site:after{
+	content: "total sites: "counter(idx);
+	color:green;
+	padding:5px;
+}
