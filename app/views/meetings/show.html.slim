@@ -1,83 +1,93 @@
 p#notice = notice
 .row
-  .col-md-6
-    p
+  .col-md-2
       strong Title:
+  .col-md-4
       = @meeting.title
-    p
+  .col-md-2
       strong Operator:
+  .col-md-4
       = @meeting.user.name
-    p
+.row
+  .col-md-2
       strong Organization name:
+  .col-md-4
       =@organization.name
-    p
+  .col-md-2
       strong Booked by:
+  .col-md-4
       =[@booked_by.first_name, @booked_by.last_name].join(' ').squeeze(' ')
 
-
-    p
+.row
+  .col-md-2  
       strong Start time:
+  .col-md-4
       = @meeting.start_time
-    p
+  .col-md-2
       strong End time:
+  .col-md-4
       = @meeting.end_time
- 
-     
-    p
+.row
+  .col-md-2
       strong Meeting Host:
+  .col-md-4
       = [@organizer.first_name, @organizer.last_name].join(' ').squeeze(' ')
-  .col-md-6
-    h5 Services
+br
+h5 Services
+.row
     -if @meeting.call_recording == true
-      strong Call recording  
-      br    
+     .col-md-2
+       strong Call recording     
     -if @meeting.test_call == true
-      strong Test call
-      br
-      
+     .col-md-2
+       .btn.btn-outline Test call    
     -if @meeting.cancel_call == true
-      strong Cancel call
-      br
-     
+     .col-md-2
+      .btn.btn-outline Cancel call  
     -if @meeting.setup_call == true
-      strong Setup call
-      br
-      
+     .col-md-2  
+      .btn.btn-outline Setup call     
     -if @meeting.concierage == true
-      strong Concierage
-      br
-     
-    
-    br
-  .col-md-12
-      .border
-        strong Agenda
-        br
-        = @meeting.agenda
-  br
-  br
+     .col-md-2
+      .btn.btn-outline Concierage
+br
+h5 Agenda
+= @meeting.agenda
+br
+br
 h5 Participants
 table.table
+  thead
+    tr
+      th scope="col" Organization Type
+      th scope="col" Organization Name
+      th scope="col" Dial Method
+      th scope="col" Connection
+      
+      
+      
+
+  tbody
   - @meeting.meeting_organizations.each do |i| 
     tr
       td Internal
       td =i.organization.name 
       -if i.dial_in == true
           td Dial_in
-          td =i.connect_type
-          td =i.connect_address
+          td #{i.connect_type} / #{i.connect_address}
       -if i.QM_dial_out == true 
           td QM Dial_out
-          -if i.audio == true
-              td Audio
-          -if i.webRTC == true
-              td webRTC
-          -if i.URL == true
-              td URL
-          -if i.ISDN == true
-              td ISDN
-          -if i.IP == true
-              td IP
+          td  
+              -if i.audio == true
+                  span Audio ,
+              -if i.webRTC == true
+                  span webRTC ,
+              -if i.URL == true
+                  span URL ,
+              -if i.ISDN == true
+                  span ISDN ,
+              -if i.IP == true
+                  span IP ,
           
   - @meeting.meeting_externals.each do |i| 
     tr
@@ -85,20 +95,20 @@ table.table
       td =i.external.name
       -if i.dial_in == true
           td Dial_in
-          td =i.connect_type
-          td =i.connect_address
-      -else 
-          td QM Dial_out
+          td #{i.connect_type} / #{i.connect_address}
+      -if i.QM_dial_out == true 
+        td QM Dial_out
+        td
           -if i.audio == true
-              td Audio
+              span Audio,
           -if i.webRTC == true
-              td webRTC
+              span webRTC,
           -if i.URL == true
-              td URL
+              span URL,
           -if i.ISDN == true
-              td ISDN
+              span ISDN,
           -if i.IP == true
-              td IP
+              span IP
       td 
         strong last tested on : 
         =i.external.call_testing.date

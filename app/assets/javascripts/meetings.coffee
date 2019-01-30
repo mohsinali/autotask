@@ -47,17 +47,13 @@ $ ->
     rate = moment.duration(present.diff(past)).humanize()
     $('#result').html(rate)
 
-  
- 
-  # $(document).ready ->
-  #   flatpickr '#meeting_start_time'
-  
-
      
   
   $(document).on 'click' , '.dial_in', (evt)->
     $(this).next('div').toggle()
   $(document).on 'click' , '.dial_out', (evt)->
     $(this).next('div').toggle()
+  
+
   $('tr[data-href]').click ->
     window.location = $(this).data('href')
