@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'visitors#index'
+  root 'meetings#index'
   devise_for :users
 
 
