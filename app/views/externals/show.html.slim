@@ -1,8 +1,8 @@
-p#notice = notice
+br
 .row
   .col-md-6
     h5 External Organizations Details
-    table.table
+    table.table.tab-border
         tr
           td 
             strong Name:
@@ -15,12 +15,10 @@ p#notice = notice
           td
             strong Room:
           td  = @external.room
-hr
 h5 Call Testing Details of Externals
-hr
 .row
-  .col-md-6
-    table.table
+  .col-md-5
+    table.table.tab-border
             tr
               td 
                 strong Contact Name:
@@ -55,9 +53,9 @@ hr
                  td Successful Dialing In
                 -else
                  td Unsuccessful Dialing In
-
-  .col-md-6
-    table.table
+  .col-md-2
+  .col-md-5
+    table.table.tab-border
         tr
           td 
             strong  IP Address:

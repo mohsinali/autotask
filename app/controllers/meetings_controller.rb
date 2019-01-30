@@ -7,7 +7,7 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     @meetings = Meeting.all
-    @meetings = Meeting.order(:start_time).page params[:page]
+    @meetings = Meeting.order('created_at DESC').page params[:page]
   end
 
   # GET /meetings/1

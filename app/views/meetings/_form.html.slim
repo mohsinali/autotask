@@ -21,7 +21,7 @@
     .col-md-4
         .field
            
-            = f.select :booked_by, options_for_select(@booked_by.collect { |booked_by|[booked_by.first_name.titleize]}), {}, { id: 'booked_by_select' }
+            = f.select :booked_by, options_for_select(@booked_by.collect { |booked_by|[booked_by.first_name.titleize]}), {}, { id: 'booked_by_select' , required: true}
   .meeting
     .row
         .col-md-4
@@ -68,22 +68,28 @@
     = f.text_area :agenda ,required: true
 
   h3 Services
-  .field
-   
-    = f.check_box :call_recording 
-  .field
-    
-    = f.check_box :test_call
-  .field
-    
-    = f.check_box :cancel_call
-  .field
-    
-    = f.check_box :setup_call
-  .field
-    
-    = f.check_box :concierage
-        
+  .row
+   .col-md-2
+    .field
+     
+      = f.check_box :call_recording 
+   .col-md-2
+    .field
+      
+      = f.check_box :test_call
+   .col-md-2
+    .field
+      
+      = f.check_box :cancel_call
+   .col-md-2
+    .field
+      
+      = f.check_box :setup_call
+   .col-md-2
+    .field
+      
+      = f.check_box :concierage
+  br     
   .actions = f.submit
 
   
