@@ -74,7 +74,7 @@ table.table
       -if i.dial_in == true
           td Dial_in
           td #{i.connect_type} / #{i.connect_address}
-      -if i.QM_dial_out == true 
+      -if i.dial_in == false 
           td QM Dial_out
           td  
               -if i.audio == true
@@ -95,7 +95,7 @@ table.table
       -if i.dial_in == true
           td Dial_in
           td #{i.connect_type} / #{i.connect_address}
-      -if i.QM_dial_out == true 
+      -if i.dial_in == false 
         td QM Dial_out
         td
           -if i.audio == true

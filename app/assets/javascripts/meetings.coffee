@@ -47,14 +47,13 @@ $ ->
     rate = moment.duration(present.diff(past)).humanize()
     $('#result').html(rate)
 
-     
-  
-  $(document).on 'click' , '.dial_in', (evt)->
-    $(this).next('div').toggle()
-  $(document).on 'click' , '.dial_out', (evt)->
-    $(this).next('div').toggle()
 
-  
+  $(document).on 'change' , 'input.dial', (evt)->
+    $('.dial_in').toggle()
+    $('.dial_out').hide()
+  $(document).on 'change' , 'input.dialo', (evt)->
+    $('.dial_out').toggle()
+    $('.dial_in').hide()
 
   
 

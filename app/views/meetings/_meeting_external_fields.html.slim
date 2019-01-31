@@ -5,13 +5,13 @@
 		   =f.select :external_id , options_for_select(@externals.collect{|external|[external.name.titleize, external.id] }, 1)
 		.col-md-4
 		   =f.text_field :room 
-	.row
-		.col-md-6	  
-			.field.dial_in
+	
+	.col-md-6	  
+			.field
 			    
-			    = f.check_box :dial_in
-			    br	 
-			.row style="display:none;"
+			    = f.radio_button :dial_in,true, {label:'Dial_in',class:'dial'}
+			     
+			.row.dial_in style="display:none;"
 			  
 				.col-md-2
 					.field
@@ -30,16 +30,20 @@
 					.field
 					   = f.check_box :URL   
 			
-	    .col-md-6	  
-			.field.dial_out
-			    = f.check_box :QM_dial_out
-			.row style="display:none;"
+	.col-md-6	  
+			.field
+			    = f.radio_button :dial_in, false,{label:'QM_dial_out', class:'dialo'}
+			.row.dial_out style="display:none;"
 				.col-md-6
 					.field
 			       		=f.select :connect_type,MeetingExternal.connect_types.keys.to_a , label: 'Connection Type'
 			    .col-md-6
 		        	.field
 		        		=f.text_field :connect_address
-			
+	.row
+		.col-md-8
+		.col-md-4
 			= link_to_remove_association "remove organization", f,class:"btn-sm btn-warning add-button glyphicon glyphicon glyphicon-minus"
 	
+
+   
