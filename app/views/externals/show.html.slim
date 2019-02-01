@@ -83,6 +83,4 @@ h5 Call Testing Details of Externals
             strong = comment.user.name  
             p = comment.content 
     = render "comments/form" 
-= link_to 'Edit', edit_external_path(@external)
-
-= link_to 'Back', externals_path
+= link_to 'Edit', edit_external_path(@external),class: 'btn btn-success'

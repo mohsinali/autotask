@@ -2,7 +2,7 @@ html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
   body
-    h5 Hello #{@booked_by.first_name} #{@booked_by.last_name},
+    h3 Hello #{@booked_by.first_name} #{@booked_by.last_name},
 
 	p Here is confirmation of your booking.
 	strong	Start Time : 
@@ -17,6 +17,7 @@ html
 	 strong	Joining Instructions
 	p There are a total of #{@meeting.meeting_organizations.count + @meeting.meeting_externals.count} sites joining this call. These are listed below:
 	- @meeting.meeting_organizations.each do |i|
+		br
 		strong Organization Name : 
 		span #{i.organization.name} 
 		br 
@@ -45,6 +46,7 @@ html
     br
     h3 Externals
     - @meeting.meeting_externals.each do |i|
+   	    br
 		strong Organization Name : 
 		span #{i.external.name} 
 		br

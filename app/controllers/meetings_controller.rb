@@ -53,6 +53,9 @@ class MeetingsController < ApplicationController
     if @meeting.save
       @booked_by=Contact.find(@meeting.booked_by)
       MeetingMailer.meeting_email(@booked_by, @meeting).deliver
+      @meeting.meeting_organizations.each do |i| 
+        MeetingMailer.meeting_organizations_email(@booked_by,@meeting,i.organization).deliver
+      end
       redirect_to(@meeting, :notice => 'Meeting was successfully created')   
     else
       render :action => 'new'
