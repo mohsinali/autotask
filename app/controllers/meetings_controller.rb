@@ -43,22 +43,21 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-     @user = current_user
+    @user = current_user
     @meeting =  current_user.meetings.build(meeting_params)
     @organizations = Organization.all
     @contacts = Contact.host.where("Organization_id = ?", Organization.first.id) 
     @booked_by = Contact.other.where("Organization_id = ?", Organization.first.id) 
     @externals = External.all
-                                                                                                                                                                                                                                                                     
-    respond_to do |format|
-      if @meeting.save
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
-        format.json { render :show, status: :created, location: @meeting }
-      else
-        format.html { render :new }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
-      end
+                                                                                                                                                                                                                                                                   
+    if @meeting.save
+      @booked_by=Contact.find(@meeting.booked_by)
+      MeetingMailer.meeting_email(@booked_by, @meeting).deliver
+      redirect_to(@meeting, :notice => 'Meeting was successfully created')   
+    else
+      render :action => 'new'
     end
+
   end
 
   # PATCH/PUT /meetings/1

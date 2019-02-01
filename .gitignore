@@ -83,3 +83,4 @@ Docs
 
 # tilde files are usually backup files from a text editor
 *~
+sendgrid.env

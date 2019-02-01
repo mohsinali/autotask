@@ -1,0 +1,103 @@
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h5 Hello #{@booked_by.first_name} #{@booked_by.last_name},
+
+	p Here is confirmation of your booking.
+	strong	Start Time : 
+	span #{@meeting.start_time}
+	br
+	strong	End Time : 
+	span #{@meeting.end_time}
+	br
+	strong  Agenda of the meeting:
+	span #{@meeting.agenda}
+	p 
+	 strong	Joining Instructions
+	p There are a total of #{@meeting.meeting_organizations.count + @meeting.meeting_externals.count} sites joining this call. These are listed below:
+	- @meeting.meeting_organizations.each do |i|
+		strong Organization Name : 
+		span #{i.organization.name} 
+		br 
+		strong Meeting Room : 
+		span #{@meeting.room}. 
+	    -if i.dial_in == false
+          p Questmark will dial out to this site with:
+          p #{i.connect_type} / #{i.connect_address}
+        -if i.dial_in == true 
+          p This site will be required to dial in using one of the following methods  
+	      -if i.audio == true
+	          strong Audio 
+	          br
+          -if i.webRTC == true
+              strong webRTC 
+              br
+          -if i.URL == true
+              strong URL 
+              br
+          -if i.ISDN == true
+              strong ISDN 
+              br
+          -if i.IP == true
+              strong IP  
+              br
+    br
+    h3 Externals
+    - @meeting.meeting_externals.each do |i|
+		strong Organization Name : 
+		span #{i.external.name} 
+		br
+		strong Meeting Room : 
+		span #{@meeting.room}. 
+	    -if i.dial_in == false
+          p Questmark will dial out to this site with:
+          p #{i.connect_type} / #{i.connect_address}
+        -if i.dial_in == true 
+          p This site will be required to dial in using one of the following methods  
+	      -if i.audio == true
+	          strong Audio 
+	          br
+          -if i.webRTC == true
+              strong webRTC 
+              br
+          -if i.URL == true
+              strong URL 
+              br
+          -if i.ISDN == true
+              strong ISDN 
+              br
+          -if i.IP == true
+              strong IP
+              br  
+         
+	p Note: It is the responsibility of the recipient to forward this email to all externals involved.
+	br
+	strong Joining Instructions - Only Applicable for sites required to dial in
+    br
+	p	PC (WebRTC)
+    ol
+		li Use your web browser (we recommend Google Chrome) to browse to https://cloud.themeetingplatform.com
+		li Please enter #{@booked_by.first_name}.#{@booked_by.last_name}@themeetingplatform.com in the box and connect
+		li Select your camera, microphone and audio output, then press start
+		li Enter pin 837700 and click connect
+	br
+	-if @meeting.call_recording == true
+       p You have requested a Call Recording to take place.
+    -if @meeting.test_call == true
+       p You have requested a Test Call to take place. 
+    -if @meeting.cancel_call == true
+      p You have requested a Cancel Call to take place. 
+    -if @meeting.setup_call == true  
+      p You have requested a Setup Call to take place.    
+    -if @meeting.concierage == true
+      p You have requested a Concierage to take place.
+	br
+	p Please note, calls will not be locked unless otherwise requested. Please ensure your video system is switched on in plenty of time for your call.
+	br
+	p If you wish to amend or cancel your booking please reply to this ticket. If during the conference you experience any issues please contact our Service Desk where someone will try to assist you with your call.
+    br
+	p 
+	 strong Kind Regards,
+	p
+	 strong Bookings At Questmark

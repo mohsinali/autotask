@@ -50,14 +50,13 @@ Rails.application.configure do
   config.assets.debug = true
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.mailtrap.io",
-    port: 2525,
-    domain: Rails.application.secrets.smtp_domain,
-    authentication: :cram_md5,
-    enable_starttls_auto: true,
-    user_name: Rails.application.secrets.smtp_username,
-    password: Rails.application.secrets.smtp_password
-  }
+  :user_name => '02e9aae8123e9f',
+  :password => 'f61b5c156b4353',
+  :address => 'smtp.mailtrap.io',
+  :domain => 'smtp.mailtrap.io',
+  :port => '2525',
+  :authentication => :cram_md5
+}
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
