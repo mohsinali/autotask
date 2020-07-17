@@ -16,14 +16,15 @@ p
   strong Duration:
   = @meeting.duration
 p
-  strong Org name:
-  = @meeting.org_name
+  strong Organization name:
+ 
 p
   strong Booked by:
-  = @meeting.booked_by
+  = @meeting.contact
 p
+ 
   strong Operator:
-  = @meeting.operator
+  = @meeting.user.name
 p
   strong Agenda:
   = @meeting.agenda
@@ -44,11 +45,11 @@ p
   = @meeting.concierage
 p
   strong Organization:
-  = @meeting.organization
+  
 p
   strong User:
-  = @meeting.user
+  = @meeting.user.name
 
-=> link_to 'Edit', edit_meeting_path(@meeting)
-'|
-=< link_to 'Back', meetings_path
+= link_to 'Edit', edit_meeting_path(@meeting)
+
+= link_to 'Back', meetings_path

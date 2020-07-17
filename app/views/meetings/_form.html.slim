@@ -5,27 +5,43 @@
       ul
         - @meeting.errors.full_messages.each do |message|
           li = message
-  p booked by:  
-  = current_user.name
+
+  p booked by:   #{@user.name}
   .field
     =f.label :organizations
-    =f.select :organization_id, Organization.internal.collect { |o| [o.name , o.id] }
+    =f.select :organization_id , options_for_select(@organizations.collect{|organization|[organization.name.titleize, organization.id] }, 1), {}, { id: 'organizations_select' } 
   .field
     = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :date
-    = f.date_select :date
-  .field
-    = f.label :start_time
-    = time_select :start_time, 'start_time', {ampm: true}
-  .field
-    = f.label :end_time
-    = time_select :end_time, 'end_time', {ampm: true}
+    = f.text_field :title  
+  .meeting
+    .row
+      .col-sm-3
+        .form-group
+          .datetimepicker1.input-group.date
+           .field
+              = f.label :start_time
+              = f.text_field :start_time , {class: 'meeting_start_time'}
+           span.input-group-addon
+                  span.glyphicon.glyphicon-calendar
+
+    .row
+      .col-sm-3
+        .form-group
+          .datetimepicker1.input-group.date
+           .field
+              = f.label :end_time
+              = f.text_field :end_time  , {class: 'meeting_end_time'}
+           span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+      
   .field
     = f.label :duration
-    = f.text_field :duration
+    #result
   h5 Add Participants
+  h6 Site 1
+  .field
+      = f.label :organization_host
+      = f.select :contact_id, options_for_select(@contacts.map { |contact|[contact.first_name.titleize, contact.id]}), {}, { id: 'contacts_select' } 
   br
       #participants
          = f.fields_for :participants do |participant|

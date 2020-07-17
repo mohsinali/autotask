@@ -1,22 +1,32 @@
 class MeetingsController < ApplicationController
+ 
   before_action :authenticate_user!
-  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  before_action :set_meeting, only: [:edit,:update,:destroy]
 
   # GET /meetings
   # GET /meetings.json
   def index
     @meetings = Meeting.all
+    @organizations = Organization.all
+    @meetings = @user.meetings
+    @contacts = Contact.where("Organization_id = ?", Organization.first.id)
+     @contact = Contact.where("id = ?", params[:contact_id])
   end
 
   # GET /meetings/1
   # GET /meetings/1.json
   def show
+    @meeting= Meeting.find(params[:id])  
+
   end
 
   # GET /meetings/new
   def new
     @meeting = Meeting.new
-  end
+     @user = current_user
+      @organizations = Organization.all
+      @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
+ end
 
   # GET /meetings/1/edit
   def edit
@@ -25,9 +35,12 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    @meeting = Meeting.new(meeting_params)
-    @meeting.operator = current_user.name
-    @meeting.org_name = @organization.name
+     @user = current_user
+    @meeting =  current_user.meetings.build(meeting_params)
+    @organizations = Organization.all
+    @contacts = Contact.where("Organization_id = ?", Organization.first.id) 
+   
+                                                                                                                                                                                                                                                                     
     respond_to do |format|
       if @meeting.save
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
@@ -62,15 +75,25 @@ class MeetingsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def update_contacts
+    @contacts = Contact.where("organization_id = ?", params[:organization_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+ 
 
-  private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
+    @meeting = current_user.meetings.find params[:id]
+  end
+
+ 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_params
-      params.require(:meeting).permit(:title, :date, :start_time, :end_time, :duration, :org_name, :booked_by, :operator, :agenda, :call_recording, :test_call, :cancel_call, :setup_call, :concierage, :organization_id, :user_id, participants_attributes: [:connect_type,:connect_address,:participant_type,:call_type,:org_site,:dial_in,:QM_dialout,:audio,:webRTC,:ISDN,:IP,:URL,:external_room])
+      params.require(:meeting).permit(:title, :date, :start_time, :end_time, :duration, :booked_by,:agenda, :call_recording, :test_call, :cancel_call, :setup_call, :concierage,:user_id,:organization_id ,:contact_id, participants_attributes: [:connect_type,:connect_address,:participant_type,:call_type,:org_site,:dial_in,:QM_dialout,:audio,:webRTC,:ISDN,:IP,:URL,:external_room])
     end
 end
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_124650) do
+ActiveRecord::Schema.define(version: 2019_01_11_082411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,21 +63,23 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.string "name"
     t.string "questmark_reference"
     t.string "room"
-    t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_externals_on_organization_id"
+  end
+
+  create_table "meeting_organizations", force: :cascade do |t|
+    t.integer "meeting_id"
+    t.integer "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meeting_id", "organization_id"], name: "index_meeting_organizations_on_meeting_id_and_organization_id"
   end
 
   create_table "meetings", force: :cascade do |t|
     t.string "title"
-    t.date "date"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string "duration"
-    t.string "org_name"
+    t.string "start_time"
+    t.string "end_time"
     t.string "booked_by"
-    t.string "operator"
     t.text "agenda"
     t.boolean "call_recording"
     t.boolean "test_call"
@@ -88,8 +90,16 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "contact_id"
+    t.index ["contact_id"], name: "index_meetings_on_contact_id"
     t.index ["organization_id"], name: "index_meetings_on_organization_id"
     t.index ["user_id"], name: "index_meetings_on_user_id"
+  end
+
+  create_table "meetings_organizations", id: false, force: :cascade do |t|
+    t.bigint "meeting_id", null: false
+    t.bigint "organization_id", null: false
+    t.index ["meeting_id", "organization_id"], name: "index_meetings_organizations_on_meeting_id_and_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -111,6 +121,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.boolean "questmark_status"
     t.bigint "user_id"
     t.string "email"
+    t.integer "contact_method"
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
@@ -181,7 +192,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
   add_foreign_key "call_testings", "organizations"
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "organizations"
-  add_foreign_key "externals", "organizations"
+  add_foreign_key "meetings", "contacts"
   add_foreign_key "meetings", "organizations"
   add_foreign_key "meetings", "users"
   add_foreign_key "organizations", "users"
