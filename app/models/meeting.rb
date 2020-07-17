@@ -1,11 +1,21 @@
 class Meeting < ApplicationRecord
+  paginates_per 5
   #Enum
   enum call_type: [:internal, :external]
 
   #Associations
-  belongs_to :organization
-  belongs_to :user
-  has_many :participants , inverse_of: :meeting
-  accepts_nested_attributes_for :participants, reject_if: :all_blank, allow_destroy: true
+  has_many :meeting_organizations 
+  has_many :organizations, through: :meeting_organizations , inverse_of: :meeting
+  accepts_nested_attributes_for :organizations
+  accepts_nested_attributes_for :meeting_organizations
+  
+  has_many :meeting_externals 
+  has_many :externals, through: :meeting_externals
+  accepts_nested_attributes_for :externals
+  accepts_nested_attributes_for :meeting_externals
+
+  belongs_to :user , optional: true
+  
+  
   
 end

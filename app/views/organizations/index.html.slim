@@ -7,33 +7,27 @@ table.table.table-striped
       th scope="col" Main Phone
       th scope="col" Email
       th scope="col" FAX
-      th scope="col" Modified_By
-      th scope="col" Country
-      th scope="col" contact
-      th scope="col" Fax
-      th scope="col" Website
-      th scope="col" Other phone
-      th scope="col" Action
+      th scope="col" Modified By
+      th scope="col" No. of contacts
+      th scope="col" No. of Sites
+      th scope="col" Prefered Method of Contacts
+      
       
 
   tbody
     - @organizations.each do |organization|
-      tr
-        td = organization.name
-        td = organization.main_phone_contact
-        td = organization.email
-        td = organization.fax
-        td = organization.postal_code
-        td = organization.region
-        td = organization.country
-        td = organization.fax
-        td = organization.website
-        td = organization.other_phone
-        td = link_to 'Show', organization
-        td  = link_to 'Edit', edit_organization_path(organization)
-          
+          tr data-href= "/organizations/#{organization.id}"
+            td = organization.name
+            td = organization.main_phone_contact
+            td = organization.email
+            td = organization.fax
+            td = organization.user.name
+            td = organization.contacts.count
+            td = organization.sites.count
+            td = organization.contact_method
+            
 
 br
 = paginate @organizations 
 
-= link_to 'New Organization', new_organization_path
+= link_to 'New Organization', new_organization_path , class:'btn btn-success'

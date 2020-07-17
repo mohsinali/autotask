@@ -4,5 +4,6 @@ class CallTesting < ApplicationRecord
 	enum testing_status: [:yes, :no]
 
 	#Associations
-	belongs_to :external	
+	belongs_to :external
+	validates :contact_name, presence: true	
 end

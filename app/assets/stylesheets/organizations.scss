@@ -1,3 +1,31 @@
 // Place all the styles related to the Organizations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#contacts{
+  reset-counter: idx;
+}
+#sites{
+	 reset-counter: idx;
+}
+.nested-fields {
+  counter-increment: idx;
+}
+
+.nested-fields:before {
+  color:blue;
+  font-size:20px;
+  content: "Field " counter(idx) ":";
+}
+.total-count:after{
+	content: "total contacts: "counter(idx);
+	color:green;
+	padding:5px;
+}
+.total-count-site:after{
+	content: "total sites: "counter(idx);
+	color:green;
+	padding:5px;
+}
+.non:before{
+	 display: none; 
+}

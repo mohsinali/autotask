@@ -7,6 +7,7 @@ class OrganizationsController < ApplicationController
   def index
     @organizations = Organization.all
     @organizations = Organization.order(:name).page params[:page]
+
     
   end
 
@@ -31,13 +32,9 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = current_user.organizations.new(organization_params)
-
+    
     if @organization.save
-      if organization_params['user_type']== "external"
-        redirect_to new_external_path
-      else
         redirect_to @organization, notice: 'Organization was successfully created.'
-      end
     else
       respond_to do |format|
         format.html { render :new }
@@ -73,11 +70,11 @@ class OrganizationsController < ApplicationController
   
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
-      @organization = current_user.organizations.find(params[:id])
+      @organization = Organization.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :address, :street, :postal_code, :region, :country, :main_phone_contact, :fax, :website, :other_phone ,:org_type, :user_type, contacts_attributes: [:first_name, :last_name, :email, :contact_phone],sites_attributes: [:site_name])
+      params.require(:organization).permit(:name, :address, :street, :postal_code, :region, :country, :main_phone_contact, :contact_method , :fax, :website,:email, :other_phone ,:org_type,:questmark_status, contacts_attributes: [:id , :first_name, :last_name, :email, :contact_phone,:contact_type],sites_attributes: [:id,:site_name,:contact,:address])
     end
 end

@@ -16,9 +16,14 @@
 //= require bootstrap-sprockets
 //= require paloma
 //= require cocoon
-//= require rails.validations
-//= require bootstrap-datepicker
-//= require contacts
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require parsley
+//= require twitter/bootstrap
+//= require moment
+//= require flatpickr
+//= require flatpickr/l10n/es
 //= require_tree .
 
 $(document).ready(function () {

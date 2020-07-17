@@ -1,62 +1,84 @@
-= form_for @meeting do |f|
+.form-group
+= bootstrap_form_for @meeting,:html => {"data-parsley-validate" => true} do |f|
   - if @meeting.errors.any?
     #error_explanation
       h2 = "#{pluralize(@meeting.errors.count, "error")} prohibited this meeting from being saved:"
       ul
         - @meeting.errors.full_messages.each do |message|
           li = message
-  p booked by:  
-  = current_user.name
-  .field
-    =f.label :organizations
-    =f.select :organization_id, Organization.internal.collect { |o| [o.name , o.id] }
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :date
-    = f.date_select :date
-  .field
-    = f.label :start_time
-    = time_select :start_time, 'start_time', {ampm: true}
-  .field
-    = f.label :end_time
-    = time_select :end_time, 'end_time', {ampm: true}
-  .field
-    = f.label :duration
-    = f.text_field :duration
-  h5 Add Participants
-  br
-      #participants
-         = f.fields_for :participants do |participant|
-           h6 site
-
-            = render 'participant_fields', f: participant
-         .links
-            = link_to_add_association 'add site', f, :participants
-   
-
+  .row
+    .col-md-5
+        p booked by:   #{@user.name}
+        .field
+         
+          =f.select :organization_id , options_for_select(@organizations.collect{|organization|[organization.name.titleize, organization.id] }, 1), {}, { id: 'organizations_select' } 
+        .field
+         
+          = f.text_field :title , :required => true 
+    .col-md-5 
+        br
+        br
+        .meeting
+            
+                 .field    
+                    = f.text_field :start_time , {class: 'meeting_start_time' , required: true} 
+                            
+                 .field                    
+                    = f.text_field :end_time  , {class: 'meeting_end_time',required: true }
+                         
+        .field 
+          = f.label :duration 
+          #result 
+ 
   
-  .field
-    = f.label :agenda
-    = f.text_area :agenda
+  .row
+    .col-md-4
+        .field
+           
+            = f.select :contact_id, options_for_select(@contacts.map { |contact|[contact.first_name.titleize, contact.id]}), {}, { id: 'contacts_select' }
+      
+    .col-md-4    
+      .field
+           =f.select :call_type,Meeting.call_types.keys.to_a , label: 'Call Type'
+    .col-md-4 
+      .field
+          =f.text_field :room 
+  br
+            h5 Add Participants
+            #meeting_organizations
+               = f.fields_for :meeting_organizations do |participant|
+                  = render 'meeting_organization_fields', f: participant
+               .links
+                  = link_to_add_association 'Add Internal Organizations', f, :meeting_organizations , class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"
+  br
+           
+            #meeting_organizations
+               = f.fields_for :meeting_externals do |participant|
+                  = render 'meeting_external_fields', f: participant
+               .links
+                  = link_to_add_association 'Add External Organizations', f, :meeting_externals  , class:"btn-sm btn-primary add-button glyphicon glyphicon glyphicon-plus"      
 
-  h6 Services
   .field
-    = f.label :call_recording
-    = f.check_box :call_recording
+    
+    = f.text_area :agenda ,required: true
+
+  h3 Services
   .field
-    = f.label :test_call
+   
+    = f.check_box :call_recording 
+  .field
+    
     = f.check_box :test_call
   .field
-    = f.label :cancel_call
+    
     = f.check_box :cancel_call
   .field
-    = f.label :setup_call
+    
     = f.check_box :setup_call
   .field
-    = f.label :concierage
+    
     = f.check_box :concierage
-  
-
+        
   .actions = f.submit
+
+  

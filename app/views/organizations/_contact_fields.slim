@@ -1,14 +1,33 @@
 .nested-fields
-   .field
-     = f.label :first_name
-     = f.text_field :first_name
-   .field
-     = f.label :last_name
-     = f.text_field :last_name
-   .field
-     = f.label :email
-     = f.text_field :email
-   .field
-     = f.label :contact_phone
-     = f.text_field :contact_phone
-   = link_to_remove_association "remove contact", f
+ .row
+  .col-md-5
+	   .field
+	     
+	     = f.text_field :first_name , :required => true
+	   .field
+	     
+	     = f.text_field :last_name ,  :required => true
+	   .field
+        
+         =f.select :contact_type,  contact_Type: Contact.contact_types.keys.to_a 
+
+  .col-md-5   
+	   .field
+	     = f.text_field :email ,data: {parsley_required: "",parsley_type: "email" }
+	   .field
+	     
+	     = f.text_field :contact_phone ,data: {parsley_required: "",parsley_type: "number" }
+	   = link_to_remove_association "remove contact", f, class:"btn-sm btn-warning add-button glyphicon glyphicon glyphicon-minus", id:'rmc'
+javascript:
+ var a = 0;
+  $("#addc").click(() => {
+      ++a;
+      console.log('inc a', a);
+  });
+  $("#rmc").click(() => {
+      --a;
+       console.log('dec a', a);
+  });
+
+ 
+  

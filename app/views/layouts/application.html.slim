@@ -5,13 +5,15 @@ html
     title
       = content_for?(:title) ? yield(:title) : 'Autotask'
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Autotask'}"
-    == stylesheet_link_tag "application", :media => 'all'
+    == stylesheet_link_tag "application", :media => 'all' , 'data-turbolinks-track' => true
     == javascript_include_tag 'application'
     == csrf_meta_tags
+    
+
   body
-    header
-      == render 'layouts/navigation'
+  
     main[role="main"]
+      == render 'layouts/navigation'
       == render 'layouts/messages'
       == yield
       = insert_paloma_hook

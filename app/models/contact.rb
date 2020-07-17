@@ -1,4 +1,6 @@
 class Contact < ApplicationRecord
   #Associations
-  belongs_to :organization
+  enum contact_type: [:host, :others]
+  belongs_to :organization 
+
 end

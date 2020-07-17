@@ -25,6 +25,7 @@ class ParticipantsController < ApplicationController
   # POST /participants.json
   def create
     @participant = Participant.new(participant_params)
+    @externals = External.all
 
     respond_to do |format|
       if @participant.save

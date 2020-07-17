@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_124650) do
+ActiveRecord::Schema.define(version: 2019_01_21_122317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.integer "testing_with"
     t.boolean "testing_method"
     t.string "date"
-    t.string "room"
-    t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "testing_with_method"
-    t.index ["organization_id"], name: "index_call_testings_on_organization_id"
+    t.bigint "external_id"
+    t.index ["external_id"], name: "index_call_testings_on_external_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contact_type"
     t.index ["organization_id"], name: "index_contacts_on_organization_id"
   end
 
@@ -63,21 +63,54 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.string "name"
     t.string "questmark_reference"
     t.string "room"
-    t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_externals_on_organization_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_externals_on_user_id"
+  end
+
+  create_table "meeting_externals", force: :cascade do |t|
+    t.bigint "meeting_id"
+    t.bigint "external_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "connect_type"
+    t.string "connect_address"
+    t.string "room"
+    t.boolean "dial_in"
+    t.boolean "QM_dial_out"
+    t.boolean "audio"
+    t.boolean "webRTC"
+    t.boolean "ISDN"
+    t.boolean "IP"
+    t.boolean "URL"
+    t.index ["external_id"], name: "index_meeting_externals_on_external_id"
+    t.index ["meeting_id"], name: "index_meeting_externals_on_meeting_id"
+  end
+
+  create_table "meeting_organizations", force: :cascade do |t|
+    t.integer "meeting_id"
+    t.integer "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "connect_type"
+    t.string "connect_address"
+    t.string "room"
+    t.boolean "dial_in"
+    t.boolean "QM_dial_out"
+    t.boolean "audio"
+    t.boolean "webRTC"
+    t.boolean "ISDN"
+    t.boolean "IP"
+    t.boolean "URL"
+    t.index ["meeting_id", "organization_id"], name: "index_meeting_organizations_on_meeting_id_and_organization_id"
   end
 
   create_table "meetings", force: :cascade do |t|
     t.string "title"
-    t.date "date"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string "duration"
-    t.string "org_name"
+    t.string "start_time"
+    t.string "end_time"
     t.string "booked_by"
-    t.string "operator"
     t.text "agenda"
     t.boolean "call_recording"
     t.boolean "test_call"
@@ -88,8 +121,18 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "contact_id"
+    t.integer "call_type"
+    t.string "room"
+    t.index ["contact_id"], name: "index_meetings_on_contact_id"
     t.index ["organization_id"], name: "index_meetings_on_organization_id"
     t.index ["user_id"], name: "index_meetings_on_user_id"
+  end
+
+  create_table "meetings_organizations", id: false, force: :cascade do |t|
+    t.bigint "meeting_id", null: false
+    t.bigint "organization_id", null: false
+    t.index ["meeting_id", "organization_id"], name: "index_meetings_organizations_on_meeting_id_and_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -106,11 +149,10 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "org_type"
-    t.integer "user_type"
-    t.string "questmark_reference"
     t.boolean "questmark_status"
     t.bigint "user_id"
     t.string "email"
+    t.integer "contact_method"
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
@@ -153,6 +195,8 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "contact"
+    t.string "address"
     t.index ["organization_id"], name: "index_sites_on_organization_id"
   end
 
@@ -178,10 +222,13 @@ ActiveRecord::Schema.define(version: 2019_01_02_124650) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "call_testings", "organizations"
+  add_foreign_key "call_testings", "externals"
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "organizations"
-  add_foreign_key "externals", "organizations"
+  add_foreign_key "externals", "users"
+  add_foreign_key "meeting_externals", "externals"
+  add_foreign_key "meeting_externals", "meetings"
+  add_foreign_key "meetings", "contacts"
   add_foreign_key "meetings", "organizations"
   add_foreign_key "meetings", "users"
   add_foreign_key "organizations", "users"

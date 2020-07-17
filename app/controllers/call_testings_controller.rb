@@ -27,14 +27,11 @@ class CallTestingsController < ApplicationController
   def create
     @call_testing = CallTesting.new(call_testing_params)
 
-    respond_to do |format|
-      if @call_testing.save
-        format.html { redirect_to @call_testing, notice: 'Call testing was successfully created.' }
-        format.json { render :show, status: :created, location: @call_testing }
-      else
-        format.html { render :new }
-        format.json { render json: @call_testing.errors, status: :unprocessable_entity }
-      end
+    if @call_testing.save
+
+      redirect_to contacts_path, :notice => "save!"
+    else
+      render :new
     end
   end
 
@@ -70,6 +67,6 @@ class CallTestingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def call_testing_params
-      params.require(:call_testing).permit(:contact_name, :contact_email, :contact_phone, :ip_address, :url, :isdn, :skype_detail, :other, :testing_status, :testing_with, :testing_method, :date, :room, :organization_id)
+      params.require(:call_testing).permit(:contact_name, :contact_email, :contact_phone, :ip_address, :url, :isdn, :skype_detail, :other, :testing_status, :testing_with, :testing_method, :testing_with_method,:date, :room, :external_id)
     end
 end

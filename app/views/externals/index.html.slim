@@ -1,27 +1,30 @@
 h1 Listing externals
 
-table
+table.table.table-striped
   thead
     tr
-      th Name
-      th Questmark reference
-      th Room
-      th Organization
-      th
-      th
-      th
+      th scope="col" Name
+      th scope="col" Contact Person
+      th scope="col" Email
+      th scope="col" Tested
+      th scope="col" Tested With
+      th scope="col" Tested on
+      
+      
 
   tbody
     - @externals.each do |external|
-      tr
+      tr data-href= "/externals/#{external.id}"
         td = external.name
-        td = external.questmark_reference
-        td = external.room
-        td = external.organization
-        td = link_to 'Show', external
-        td = link_to 'Edit', edit_external_path(external)
-        td = link_to 'Destroy', external, data: { confirm: 'Are you sure?' }, method: :delete
+        td = external.call_testing.contact_name
+        td = external.call_testing.contact_email
+        td = external.call_testing.testing_status
+        td = external.call_testing.testing_with
+        td = external.call_testing.date
+       
+          
 
 br
+= paginate @externals 
 
-= link_to 'New External', new_external_path
+= link_to 'New external', new_external_path , class:'btn btn-success'

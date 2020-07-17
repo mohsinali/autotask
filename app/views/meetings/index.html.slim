@@ -1,51 +1,28 @@
-h1 Listing meetings
+br
+h3 Meetings
 
-table
+table.table.table-striped
   thead
     tr
-      th Title
-      th Date
+      th Title 
       th Start time
-      th End time
-      th Duration
-      th Org name
-      th Booked by
+      th End time   
+      th Organization name
+      th Meeting Host
       th Operator
-      th Agenda
-      th Call recording
-      th Test call
-      th Cancel call
-      th Setup call
-      th Concierage
-      th Organization
-      th User
-      th
-      th
-      th
-
+      
   tbody
     - @meetings.each do |meeting|
-      tr
+      tr data-href= "/meetings/#{meeting.id}"
         td = meeting.title
-        td = meeting.date
         td = meeting.start_time
         td = meeting.end_time
-        td = meeting.duration
-        td = meeting.org_name
-        td = meeting.booked_by
-        td = meeting.operator
-        td = meeting.agenda
-        td = meeting.call_recording
-        td = meeting.test_call
-        td = meeting.cancel_call
-        td = meeting.setup_call
-        td = meeting.concierage
-        td = meeting.organization
-        td = meeting.user
-        td = link_to 'Show', meeting
-        td = link_to 'Edit', edit_meeting_path(meeting)
-        td = link_to 'Destroy', meeting, data: { confirm: 'Are you sure?' }, method: :delete
+        td = Organization.find(meeting.organization_id).name
+        td = Contact.find(meeting.contact_id).first_name + Contact.find(meeting.contact_id).last_name
+        td = meeting.user.name
+        
 
 br
+= paginate @meetings 
 
-= link_to 'New Meeting', new_meeting_path
+= link_to 'New Meeting', new_meeting_path , class:'btn btn-success'
