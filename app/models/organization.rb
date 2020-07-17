@@ -2,9 +2,9 @@ class Organization < ApplicationRecord
   #enums
   enum org_type: [:customer, :lead, :prospect]
   enum user_type: [:visscon_user, :external]
+  enum contact_method: [:webRTC , :audio]
 
   #Associations
-  has_one :external,dependent: :destroy
   has_many :meetings
   belongs_to :user
 

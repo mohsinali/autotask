@@ -14,6 +14,8 @@ gem "cocoon"
 gem 'client_side_validations'
 gem 'bootstrap-datepicker-rails'
 gem 'kaminari'
+gem "parsley-rails"
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
